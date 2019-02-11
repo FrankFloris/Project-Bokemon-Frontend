@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {WorldMap} from './WorldMap';
-import {MAP} from './mock-map';
+import {TEMPTY, MAP} from './mock-map';
 import {Observable, of} from 'rxjs';
 
 @Injectable({
@@ -11,6 +11,6 @@ export class WorldMapService {
   constructor() { }
 
   getWorldMap(): Observable<WorldMap> {
-    return of(new WorldMap(MAP));
+    return of(new WorldMap(MAP, TEMPTY));
   }
 }
