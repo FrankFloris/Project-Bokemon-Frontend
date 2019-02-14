@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
-import { observable} from 'rxjs';
+import {Observable, observable} from 'rxjs';
 import { Player} from './Player';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getUserDetails(username, password) {
 
@@ -22,6 +24,12 @@ export class LoginService {
       password
     }).subscribe()
   }
+
+  authenticate(player: Player) {
+    return this.http.post('http://localhost:8080/authenticate', player).pipe(); //(
+    //catchError(this.handleError<Player>)
+  }
+
 }
 
   // saveUser(player: Player) {

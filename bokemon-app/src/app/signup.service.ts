@@ -12,8 +12,12 @@ export class SignupService {
   constructor(private http: HttpClient) { }
 
   saveUser(player: Player) {
-    return this.http.post( 'http://localhost:4200/login-page',
+    return this.http.post( 'http://localhost:8080/player',
       player).pipe(catchError(this.handleError<Player>( 'saveUser')));
+  }
+
+  findAll(): Observable<Player[]> {
+    return this.http.get<any>('http://localhost:8080/player').pipe();
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

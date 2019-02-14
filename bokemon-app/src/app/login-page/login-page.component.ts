@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import {LoginService} from '../login.service';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Player} from '../Player';
+import { Router} from '@angular/router';
 
 // import { FormBuilder} from '@angular/forms';
 
@@ -22,7 +23,7 @@ export class LoginPageComponent implements OnInit {
     password: ['', Validators.required]
   });
 
-  constructor(public fb: FormBuilder, private loginService: LoginService) {}
+  constructor(public fb: FormBuilder, private loginService: LoginService, private router: Router) {}
 
   ngOnInit() {
   }
@@ -30,8 +31,19 @@ export class LoginPageComponent implements OnInit {
   public verifyUser (event) {
     const username = this.loginPage.controls['username'].value;
     const password = this.loginPage.controls['password'].value;
+    const world = 8;
+    const sprite = "https://";
+    const x = 0;
+    const y = 0;
 
-    this.loginService.verifyUser(username, password)
+    this.loginService.authenticate(new Player(0, username, password, world, sprite, x, y)).subscribe( result => {
+      console.log(result)
+      if(result == true){
+        console.log("HOI")
+        this.router.navigate(['world-view'])
+      }
+      // else {router}
+    })
   }
 
 }
