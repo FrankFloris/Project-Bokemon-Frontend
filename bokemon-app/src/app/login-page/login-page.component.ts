@@ -3,6 +3,7 @@ import {LoginService} from '../login.service';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Player} from '../Player';
 import { Router} from '@angular/router';
+import {PopupService} from '../popup.service';
 
 // import { FormBuilder} from '@angular/forms';
 
@@ -10,7 +11,7 @@ import { Router} from '@angular/router';
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css'],
-  providers: [LoginService]
+  providers: [LoginService, PopupService]
 
 })
 export class LoginPageComponent implements OnInit {
@@ -23,7 +24,8 @@ export class LoginPageComponent implements OnInit {
     password: ['', Validators.required]
   });
 
-  constructor(public fb: FormBuilder, private loginService: LoginService, private router: Router) {}
+  constructor(public fb: FormBuilder, private loginService: LoginService,
+              private router: Router, private popup: PopupService) {}
 
   ngOnInit() {
   }
@@ -42,8 +44,15 @@ export class LoginPageComponent implements OnInit {
         console.log("HOI")
         this.router.navigate(['world-view'])
       }
-      // else {router}
+      else {this.popup.showAsComponent("Your username or password was incorrect, please try again.")}
     })
   }
 
+  public goToSignup() {
+    this.router.navigate(['signup'])
+  }
+
+  somethingSignup() {
+    window.alert("ALARM!!!!")
+  }
 }
