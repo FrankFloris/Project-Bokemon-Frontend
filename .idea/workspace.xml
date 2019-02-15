@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ada869cc-fc64-4c9e-a56e-228d2620418c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bokemon-app/src/app/popup.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bokemon-app/src/app/popup.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bokemon-app/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/bokemon-app/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bokemon-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/bokemon-app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bokemon-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/bokemon-app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bokemon-app/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bokemon-app/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bokemon-app/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bokemon-app/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bokemon-app/src/app/signup/signup.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/bokemon-app/src/app/signup/signup.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bokemon-app/src/app/signup/signup.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/bokemon-app/src/app/signup/signup.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bokemon-app/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bokemon-app/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bokemon-app/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/bokemon-app/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bokemon-app/src/app/login-page/login-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/bokemon-app/src/app/login-page/login-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bokemon-app/src/app/world-view/world-view.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/bokemon-app/src/app/world-view/world-view.component.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -35,7 +30,11 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bokemon-app/src/app/world-view/world-view.component.html">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -47,13 +46,37 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bokemon-app/src/app/login-page/login-page.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="238">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bokemon-app/src/app/login-page/login-page.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
+              <folding>
+                <element signature="e#196#235#0" expanded="true" />
+                <element signature="e#1000#1039#0" expanded="true" />
+                <element signature="e#1225#1264#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bokemon-app/src/app/app.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -62,6 +85,15 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/bokemon-app/src/app/app.component.html" />
+        <option value="$PROJECT_DIR$/bokemon-app/src/app/world-view/world-view.component.html" />
+        <option value="$PROJECT_DIR$/bokemon-app/src/app/login-page/login-page.component.html" />
+      </list>
+    </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
@@ -137,7 +169,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/bokemon-app" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="ts.external.directory.path" value="C:\Users\Student\Desktop\Project-Bokemon-Frontend\Project-Bokemon-Frontend\bokemon-app\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="C:\Users\Aria\Documents\java-bootcamp\Project-Bokemon-Frontend\bokemon-app\node_modules\typescript\lib" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -164,16 +196,18 @@
       <workItem from="1549877090735" duration="153000" />
       <workItem from="1550054494326" duration="351000" />
       <workItem from="1550155242361" duration="7000" />
+      <workItem from="1550240073549" duration="3764000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="511000" />
+    <option name="totallyTimeSpent" value="4275000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25237092" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25237092" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -190,7 +224,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32827735" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32827735" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -213,9 +247,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bokemon-app/src/app/world-view/world-view.component.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/bokemon-app/src/app/mock-map.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -223,11 +254,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bokemon-app/src/app/app.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bokemon-app/src/app/login-page/login-page.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="238">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bokemon-app/src/app/world-view/world-view.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bokemon-app/src/app/login-page/login-page.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
+          <folding>
+            <element signature="e#196#235#0" expanded="true" />
+            <element signature="e#1000#1039#0" expanded="true" />
+            <element signature="e#1225#1264#0" expanded="true" />
           </folding>
         </state>
       </provider>
