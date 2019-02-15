@@ -14,6 +14,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PopupService} from './popup.service';
 import {PopupComponent} from './popup.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {PopupComponent} from './popup.component';
     WorldViewComponent,
     LoginPageComponent,
     SignupComponent,
-    PopupComponent
+    PopupComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

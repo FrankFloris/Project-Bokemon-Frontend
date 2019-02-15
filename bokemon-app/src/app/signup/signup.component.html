@@ -5,6 +5,9 @@
   <input formControlName="password" type="password" placeholder="password">
   <button type="submit">Create new account</button>
 </form>
+<form [formGroup]="signupPage" (ngSubmit)="goToLogin()">
+  <button type="submit">Login</button>
+</form>
 <!--<div [hidden]="isNewuser"></div>-->
 
 

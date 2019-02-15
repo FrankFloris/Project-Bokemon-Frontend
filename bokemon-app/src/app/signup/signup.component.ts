@@ -24,7 +24,8 @@ export class SignupComponent implements OnInit {
     password: ['', Validators.required]
   });
 
-  constructor(public fb: FormBuilder, private signupService: SignupService, private router: Router, private popup: PopupService) { }
+  constructor(public fb: FormBuilder, private signupService: SignupService,
+              private router: Router, private popup: PopupService) { }
   //, private router: Router    dit kan misschien in de constructor
 
   ngOnInit() {
@@ -73,5 +74,8 @@ export class SignupComponent implements OnInit {
     
     
   }
-  
+
+  goToLogin() {
+    this.router.navigate(['login-page'])
+  }
 }
