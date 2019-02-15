@@ -1,16 +1,55 @@
-<p>Welcome back to the world of Bokemon!</p>
-<p>Please enter a username and password to login</p>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">🅱️okemon</h1>
+    <p class="lead">Welcome to the wonderous world of Bokemon.</p>
+  </div>
+</div>
+
+<div style="max-width: 800px; margin: auto;">
 <form [formGroup]="loginPage" (ngSubmit)="verifyUser($event)">
-  <input formControlName="username" type="text" placeholder="username">
-  <input formControlName="password" type="password" placeholder="password">
-  <button type="submit">Login</button>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Username</span>
+    </div>
+    <input formControlName="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Password</span>
+    </div>
+    <input formControlName="password" type="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-lg btn-block" style="max-width: 200px; margin: auto;">Login</button>
+  <!--<button type="submit" class="btn btn-primary">Login</button>-->
 </form>
+
+<p></p>
+
 <form [formGroup]="loginPage" (ngSubmit)="goToSignup()">
-<button type="submit">Signup</button>
+  <button type="submit" class="btn btn-primary btn-lg btn-block" style="max-width: 200px; margin: auto;">Sign up</button>
 </form>
-<form [formGroup]="loginPage" (ngSubmit)="somethingSignup()">
-  <button type="submit">something</button>
-</form>
+</div>
+
+
+
+
+
+
+<!--<p>Welcome back to the world of Bokemon!</p>-->
+<!--<p>Please enter a username and password to login</p>-->
+<!--<form [formGroup]="loginPage" (ngSubmit)="verifyUser($event)">-->
+  <!--<input formControlName="username" type="text" placeholder="username">-->
+  <!--<input formControlName="password" type="password" placeholder="password">-->
+  <!--<button type="submit">Login</button>-->
+<!--</form>-->
+<!--<form [formGroup]="loginPage" (ngSubmit)="goToSignup()">-->
+<!--<button type="submit">Signup</button>-->
+<!--</form>-->
+<!--<form [formGroup]="loginPage" (ngSubmit)="somethingSignup()">-->
+  <!--<button type="submit">something</button>-->
+<!--</form>-->
 <!--<form (submit)="loginUser($event)">-->
   <!--<input type="text" placeholder="username" id="username">-->
   <!--<input type="password" placeholder="password" id="password">-->
