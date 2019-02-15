@@ -4,6 +4,7 @@ import { WorldViewComponent} from './world-view/world-view.component';
 import { LoginPageComponent} from './login-page/login-page.component';
 import { SignupComponent} from './signup/signup.component';
 
+
 const routes: Routes = [
   {path: 'login-page', component: LoginPageComponent},
   {path: 'world-view', component: WorldViewComponent},
