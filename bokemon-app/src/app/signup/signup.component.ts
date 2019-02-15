@@ -42,7 +42,8 @@ export class SignupComponent implements OnInit {
         if (this.players[x].username == this.signupPage.controls['username'].value) {
           gevonden = true;
           console.log("MAG NIET!!! ALARM!!!!");
-          this.popup.showAsComponent("This username is not available, please choose a different username")
+          window.alert("This username is not available, please choose a different username")
+          // this.popup.showAsComponent("This username is not available, please choose a different username")
           // this.popup.showAsElement(<button>);
           break;
         }
