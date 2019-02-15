@@ -4,11 +4,25 @@ import {catchError} from 'rxjs/operators';
 import {Observable, observable} from 'rxjs';
 import { Player} from './Player';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+
+  currentPlayerId: number;
+
+
+  login(username: string, password: string){
+
+  }
+
+  logout(){
+
+  }
+
+  isLoggedIn(): boolean{
+    return true;
+  }
 
   constructor(private http: HttpClient) {
   }
@@ -16,7 +30,6 @@ export class LoginService {
   getUserDetails(username, password) {
 
   }
-
 
   verifyUser(username: any, password: any) {
     return this.http.post('/DE URL', {
@@ -31,8 +44,3 @@ export class LoginService {
   }
 
 }
-
-  // saveUser(player: Player) {
-  // return this.http.post( 'http://localhost:4200/login-page',
-  //   player).pipe(catchError(this.handleError<Player>( 'saveUser')));
-// }
