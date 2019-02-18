@@ -30,6 +30,8 @@ export class WorldView {
     return this.view;
   }
 
+
+
   getTileId(x: number, y: number, map: WorldMap): number {
     const tilesArray: number[] = map.tiles.split(',').map(Number);
     return tilesArray[y * map.height + x];
