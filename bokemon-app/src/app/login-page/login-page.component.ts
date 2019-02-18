@@ -42,9 +42,15 @@ export class LoginPageComponent implements OnInit {
       console.log(result)
       if(result == true){
         console.log("HOI")
+        localStorage.setItem("player", (this.loginPage.controls['username'].value).toString())
+        console.log(localStorage.getItem("player"))
+        window.alert("Current player is: " + localStorage.getItem("player"))
         this.router.navigate(['world-view'])
       }
-      else {this.popup.showAsComponent("Your username or password was incorrect, please try again.")}
+      else {
+        window.alert("Your username or password was incorrect, please try again.")
+        // this.popup.showAsComponent("Your username or password was incorrect, please try again.")
+        }
     })
   }
 
@@ -52,7 +58,4 @@ export class LoginPageComponent implements OnInit {
     this.router.navigate(['signup'])
   }
 
-  somethingSignup() {
-    window.alert("ALARM!!!!")
-  }
 }
