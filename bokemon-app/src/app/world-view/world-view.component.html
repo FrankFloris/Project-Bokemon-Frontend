@@ -5,9 +5,20 @@
   <!--</tr>-->
 <!--</table>-->
 
-<table cellspacing="0" align="center">
-  <tr *ngFor="let row of viewTiles">
-    <td *ngFor="let cell of row"><img src="{{cell.sprite}}" style="display: block;"></td>
-  </tr>
-</table>
+<div *ngIf ="tileView">
+  <table cellspacing="0" align="center">
+    <tr *ngFor="let row of tileView">
+      <td *ngFor="let cell of row"><img src="{{cell.sprite}}" style="display: block;"></td>
+    </tr>
+  </table>
+
+</div>
+
+
+
+<!--<table cellspacing="0" align="center">-->
+  <!--<tr *ngFor="let row of viewTiles">-->
+    <!--<td *ngFor="let cell of row"><img src="{{cell.sprite}}" style="display: block;"></td>-->
+  <!--</tr>-->
+<!--</table>-->
 
