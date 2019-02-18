@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {WorldMapService} from '../world-map.service';
 import {WorldMap} from '../WorldMap';
 import {WorldView} from '../WorldView';
 import {TileService} from '../tile.service';
 import {Tile} from '../Tile';
+
+import {Router} from '@angular/router';
+import {FormBuilder, Validators} from '@angular/forms';
+
 import {TileMap} from "../TileMap";
+
 
 @Component({
   selector: 'app-world-view',
@@ -16,13 +21,20 @@ export class WorldViewComponent implements OnInit {
   worldView: WorldView;
   viewNumbers: number[][];
   viewTiles: Tile[][];
+  currentPlayer: string = localStorage.getItem("player");
 
   tileMap: TileMap;
   tileView: Tile[][];
 
   testSting: string;
 
-  constructor(private worldMapService: WorldMapService, private tileService: TileService) { }
+  // @Input()
+  // logOutPage: WorldViewComponent;
+  //
+  // public logOutPage = this.fb.group({
+  // });
+
+  constructor(private worldMapService: WorldMapService, private tileService: TileService, private router: Router) { }
 
   ngOnInit() {
     this.getTileMap();
@@ -39,6 +51,11 @@ export class WorldViewComponent implements OnInit {
       });
   }
 
+
+  logOut(){
+    localStorage.setItem("player", "");
+    this.router.navigate(['login-page'])
+  }
 
   getWorldMap(): void {
     this.worldMapService.findById(7)

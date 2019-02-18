@@ -5,7 +5,7 @@
   </div>
 </div>
 
-<div style="max-width: 800px; margin: auto;ng ">
+<div style="max-width: 800px; margin: auto; ">
 <form [formGroup]="loginPage" (ngSubmit)="verifyUser($event)">
   <div class="input-group mb-3">
     <div class="input-group-prepend">
@@ -16,20 +16,21 @@
 
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Password</span>
+      <span class="input-group-text" id="basic-addon2">Password</span>
     </div>
     <input formControlName="password" type="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
   </div>
 
   <button type="submit" class="btn btn-primary btn-lg btn-block" style="max-width: 200px; margin: auto;">Login</button>
-  <!--<button type="submit" class="btn btn-primary">Login</button>-->
 </form>
 
 <p></p>
 
+  <div>Don't have an account yet?</div>
 <form [formGroup]="loginPage" (ngSubmit)="goToSignup()">
 
-  <button type="submit" class="btn btn-primary btn-lg btn-block" style="max-width: 200px; margin: auto;">Sign up</button>
+
+  <button type="submit" class="btn btn-primary btn-lg btn-block" style="max-width: 200px; margin: auto;">Sign up instead</button>
 </form>
 </div>
 
@@ -106,3 +107,4 @@
 <!--&lt;!&ndash;<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>&ndash;&gt;-->
 
 <!--&lt;!&ndash;</html>&ndash;&gt;-->
+
