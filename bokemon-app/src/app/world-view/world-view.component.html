@@ -4,19 +4,14 @@
     <!--<td *ngFor="let cell of row"><img src="{{cell}}" style="display: block;"></td>-->
   <!--</tr>-->
 <!--</table>-->
-<div>
-<style>.center {
-  margin: auto;
-  width: 60%;
-  border: 3px solid #73AD21;
-  padding: 10px;
-}</style>
 
-<table cellspacing="0">
+<table cellspacing="0" align="center">
   <tr *ngFor="let row of viewTiles">
     <td *ngFor="let cell of row"><img src="{{cell.sprite}}" style="display: block;"></td>
   </tr>
 </table>
 
+<div>Current player is {{currentPlayer}}</div>
 
-</div>
+<button (click)="logOut()" class="btn btn-primary btn-lg btn-block" style="max-width: 200px;
+   margin: auto;">Logout</button>

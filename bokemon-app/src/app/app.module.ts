@@ -15,6 +15,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PopupService} from './popup.service';
 import {PopupComponent} from './popup.component';
 import { LogoutComponent } from './logout/logout.component';
+import {WorldviewGuardService} from './worldview-guard.service';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { LogoutComponent } from './logout/logout.component';
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [PopupService],
+  providers: [PopupService, WorldviewGuardService],
   bootstrap: [AppComponent],
   entryComponents: [PopupComponent]
 })

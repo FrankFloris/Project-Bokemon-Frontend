@@ -51,7 +51,7 @@ export class SignupComponent implements OnInit {
       if (!gevonden) {
         console.log("Niet gevonden!");
         this.saveNewUser();
-        // this.router.navigate(['world-view']);
+        localStorage.setItem("player", (this.signupPage.controls['username'].value))
       }
   })
   }
