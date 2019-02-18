@@ -19,7 +19,11 @@ export class TileMap {
     this.setEmpty(worldMap, tileCollection);
   }
 
-  //public isOpen(x: number, y: number)
+  public isMoveable(x: number, y: number) {
+    if (!this.isInBounds(x,y)) { return false; }
+    if (!this._map[y][x].open) { return false; }
+    return true;
+  }
 
   public getView(x: number, y: number, xSize: number, ySize: number): Tile[][] {
     let viewTiles: Tile[][] = [];

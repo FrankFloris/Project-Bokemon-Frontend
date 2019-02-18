@@ -12,6 +12,24 @@
     </tr>
   </table>
 
+  <table align="center">
+    <tr>
+      <td></td>
+      <td><button (click)="movePlayerUpdate(0,-1)" class="btn btn-dark btn-lg btn-block" style="width: 64px; height:64px">↑</button></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td><button (click)="movePlayerUpdate(-1,0)" class="btn btn-dark btn-lg btn-block" style="width: 64px; height:64px">←</button></td>
+      <td></td>
+      <td><button (click)="movePlayerUpdate(1,0)" class="btn btn-dark btn-lg btn-block" style="width: 64px; height:64px">→</button></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button (click)="movePlayerUpdate(0,1)" class="btn btn-dark btn-lg btn-block" style="width: 64px; height:64px">↓</button></td>
+      <td></td>
+    </tr>
+  </table>
 </div>
 
 
@@ -22,7 +40,16 @@
   <!--</tr>-->
 <!--</table>-->
 
-<div>Current player is {{currentPlayer}}</div>
 
-<button (click)="logOut()" class="btn btn-primary btn-lg btn-block" style="max-width: 200px;
-   margin: auto;">Logout</button>
+
+
+
+<!--<button (click)="logOut()" class="btn btn-primary btn-lg btn-block" style="max-width: 200px;-->
+   <!--margin: auto;">Logout</button>-->
+  <!--<button (click)="movePlayerUpdate(1,0)" class="btn btn-primary btn-lg btn-block" style="width: 64px; height:64px">↑</button>-->
+  <!--<button (click)="movePlayerUpdate(0,1)" class="btn btn-primary btn-lg btn-block" style="max-width: 200px;-->
+   <!--margin: auto;">Move Down</button>-->
+  <!--<button (click)="movePlayerUpdate(0,-1)" class="btn btn-primary btn-lg btn-block" style="max-width: 200px;-->
+   <!--margin: auto;">Move Up</button>-->
+
+<div *ngIf="player">Current player is {{player.world}}

@@ -34,7 +34,7 @@ export class LoginPageComponent implements OnInit {
     const username = this.loginPage.controls['username'].value;
     const password = this.loginPage.controls['password'].value;
     const world = 8;
-    const sprite = "https://";
+    const sprite = "https://i.imgur.com/iwnZWVy.png";
     const x = 0;
     const y = 0;
 

@@ -9,6 +9,8 @@ import {Router} from '@angular/router';
 import {FormBuilder, Validators} from '@angular/forms';
 
 import {TileMap} from "../TileMap";
+import {PlayerService} from "../player.service";
+import {Player} from "../Player";
 
 
 @Component({
@@ -21,7 +23,9 @@ export class WorldViewComponent implements OnInit {
   worldView: WorldView;
   viewNumbers: number[][];
   viewTiles: Tile[][];
-  currentPlayer: string = localStorage.getItem("player");
+
+  username: string = localStorage.getItem("player");
+  player: Player;
 
   tileMap: TileMap;
   tileView: Tile[][];
@@ -34,10 +38,25 @@ export class WorldViewComponent implements OnInit {
   // public logOutPage = this.fb.group({
   // });
 
-  constructor(private worldMapService: WorldMapService, private tileService: TileService, private router: Router) { }
+  constructor(private worldMapService: WorldMapService, private tileService: TileService, private playerService: PlayerService, private router: Router) { }
 
   ngOnInit() {
     this.getTileMap();
+    this.getPlayer();
+  }
+
+  movePlayerUpdate(dx:number, dy: number): void {
+    this.movePlayer(dx, dy);
+    this.getTileMap();
+  }
+
+  movePlayer(dx: number, dy: number): void {
+    let xPos = this.player.x + dx;
+    let yPos = this.player.y + dy;
+    if (this.tileMap.isMoveable(xPos, yPos)) {
+      this.player.x += dx;
+      this.player.y += dy;
+    }
   }
 
   getTileMap(): void {
@@ -46,9 +65,18 @@ export class WorldViewComponent implements OnInit {
         this.tileService.findAll()
           .subscribe(tiles => {
             this.tileMap = new TileMap(tiles, worldMap);
-            this.tileView = this.tileMap.getView(0, 0, 3, 3);
+            this.tileView = this.tileMap.getView(this.player.x, this.player.y, 3, 3);
           });
       });
+  }
+
+  getPlayer(): void {
+    this.playerService.findByUsername(this.username)
+      .subscribe(players=> {
+        this.player = players[0];
+        this.getTileMap();
+        this.player.x = 2;
+      })
   }
 
 
@@ -57,22 +85,22 @@ export class WorldViewComponent implements OnInit {
     this.router.navigate(['login-page'])
   }
 
-  getWorldMap(): void {
-    this.worldMapService.findById(7)
-      .subscribe(worldMap => {
-        this.worldMap = worldMap;
-        this.viewNumbers = this.worldView.getViewNumbers(7, 4, worldMap);
-
-        this.viewTiles = [];
-        for (let y = 0; y < this.viewNumbers.length; y++) {
-          this.viewTiles[y] = [];
-          for (let x = 0; x < this.viewNumbers[0].length; x++) {
-            this.tileService.findById(this.viewNumbers[y][x]).subscribe( tile => {
-              this.viewTiles[y][x] = tile;
-            });
-          }
-        }
-      });
-  }
+  // getWorldMap(): void {
+  //   this.worldMapService.findById(7)
+  //     .subscribe(worldMap => {
+  //       this.worldMap = worldMap;
+  //       this.viewNumbers = this.worldView.getViewNumbers(7, 4, worldMap);
+  //
+  //       this.viewTiles = [];
+  //       for (let y = 0; y < this.viewNumbers.length; y++) {
+  //         this.viewTiles[y] = [];
+  //         for (let x = 0; x < this.viewNumbers[0].length; x++) {
+  //           this.tileService.findById(this.viewNumbers[y][x]).subscribe( tile => {
+  //             this.viewTiles[y][x] = tile;
+  //           });
+  //         }
+  //       }
+  //     });
+  // }
 
 }
