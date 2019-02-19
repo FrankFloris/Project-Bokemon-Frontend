@@ -25,6 +25,11 @@ export class TileMap {
     return true;
   }
 
+  public hasBokemon(x: number, y: number) {
+    if (!this.isInBounds(x,y)) { return false; }
+    return this._map[y][x].monsters;
+  }
+
   public getViewSprites(x: number, y: number, xSize: number, ySize: number, playerSprite: string): string[][] {
     let viewTiles: string[][] = [];
     let xPos: number;

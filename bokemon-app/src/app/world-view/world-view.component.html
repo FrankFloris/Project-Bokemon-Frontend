@@ -32,6 +32,15 @@
   </table>
 </div>
 
+<button (click)="onEncounter()">show overlay</button>
+
+<div *ngIf="overlay" class="overlay">
+  <div class="overlay-content">
+    <button class="btn btn-dark btn-lg btn-block"> Accept </button>
+    <button (click)="closeOverlay()" class="btn btn-dark btn-lg btn-block"> Decline </button>
+  </div>
+</div>
+
 
 
 <!--<table cellspacing="0" align="center">-->
