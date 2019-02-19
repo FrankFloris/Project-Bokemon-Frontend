@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {WorldMap} from './WorldMap';
-import {TEMPTY, MAP} from './mock-map';
 import {Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
