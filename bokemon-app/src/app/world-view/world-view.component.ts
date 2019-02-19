@@ -25,6 +25,7 @@ export class WorldViewComponent implements OnInit {
   tileMap: TileMap;
   //tileView: Tile[][];
   spriteView: string[][];
+  overlay: boolean = true;
 
   testSting: string;
 
@@ -34,16 +35,28 @@ export class WorldViewComponent implements OnInit {
   // public logOutPage = this.fb.group({
   // });
 
-  constructor(private worldMapService: WorldMapService, private tileService: TileService, private playerService: PlayerService, private router: Router) { }
+  constructor(
+    private worldMapService: WorldMapService,
+    private tileService: TileService,
+    private playerService: PlayerService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.getPlayer();
     this.getTileMap();
   }
 
+  public closeOverlay(): void {
+    this.overlay = false;
+  }
+
+  public onEncounter(): void {
+    this.overlay = true;
+  }
+
   movePlayerUpdate(dx:number, dy: number): void {
     this.movePlayer(dx, dy);
-    this.getTileMap();
   }
 
   movePlayer(dx: number, dy: number): void {
@@ -52,8 +65,13 @@ export class WorldViewComponent implements OnInit {
     if (this.tileMap.isMoveable(xPos, yPos)) {
       this.player.x += dx;
       this.player.y += dy;
+      this.spriteView = this.tileMap.getViewSprites(this.player.x, this.player.y, 6, 6, this.player.sprite);
+      if (this.tileMap.hasBokemon(xPos, yPos)) {
+        this.onEncounter();
+      }
     }
   }
+
 
 
   getTileMap(): void {
@@ -76,7 +94,6 @@ export class WorldViewComponent implements OnInit {
         this.player.x = 2;
       })
   }
-
 
   logOut(){
     localStorage.setItem("player", "");
