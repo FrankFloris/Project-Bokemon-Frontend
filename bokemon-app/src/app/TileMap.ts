@@ -25,6 +25,31 @@ export class TileMap {
     return true;
   }
 
+  public getViewSprites(x: number, y: number, xSize: number, ySize: number, playerSprite: string): string[][] {
+    let viewTiles: string[][] = [];
+    let xPos: number;
+    let yPos: number;
+
+    for (let iy = 0; iy < (2 * ySize + 1); iy++) {
+      viewTiles[iy] = [];
+      yPos = y + iy - ySize;
+      for (let ix = 0; ix < (2 * xSize + 1); ix++) {
+        xPos = x + ix - xSize;
+
+        if (ix == xSize && iy == ySize) {
+          viewTiles[iy][ix] = playerSprite;
+        } else {
+          if (this.isInBounds(xPos, yPos)) {
+            viewTiles[iy][ix] = this._map[yPos][xPos].sprite;
+          } else {
+            viewTiles[iy][ix] = this._empty.sprite;
+          }
+        }
+      }
+    }
+    return viewTiles;
+  }
+
   public getView(x: number, y: number, xSize: number, ySize: number): Tile[][] {
     let viewTiles: Tile[][] = [];
     let xPos: number;
@@ -35,6 +60,7 @@ export class TileMap {
       yPos = y + iy - ySize;
       for (let ix = 0; ix < (2 * xSize + 1); ix++) {
         xPos = x + ix - xSize;
+
         if (this.isInBounds(xPos, yPos)) {
           viewTiles[iy][ix] = this._map[yPos][xPos];
         } else {
