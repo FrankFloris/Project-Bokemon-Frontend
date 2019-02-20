@@ -61,7 +61,7 @@ export class SignupComponent implements OnInit {
     const username = this.signupPage.controls['username'].value;
     const password = this.signupPage.controls['password'].value;
     const world = 8;
-    const sprite = "https:/"
+    const sprite = "https://i.imgur.com/iwnZWVy.png"
     const x = 0;
     const y = 0;
     const bokemons = "";

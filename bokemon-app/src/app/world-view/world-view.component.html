@@ -5,10 +5,10 @@
   <!--</tr>-->
 <!--</table>-->
 
-<div *ngIf ="tileView">
+<div *ngIf ="spriteView">
   <table cellspacing="0" align="center">
-    <tr *ngFor="let row of tileView">
-      <td *ngFor="let cell of row"><img src="{{cell.sprite}}" style="display: block;"></td>
+    <tr *ngFor="let row of spriteView">
+      <td *ngFor="let cell of row"><img src="{{cell}}" style="display: block;"></td>
     </tr>
   </table>
 
@@ -32,8 +32,19 @@
   </table>
 </div>
 
+
 <button (click)="logOut()" class="btn btn-primary btn-lg btn-block" style="max-width: 200px;
    margin: auto;">Logout</button>
+
+<button (click)="onEncounter()">show overlay</button>
+
+<div *ngIf="overlay" class="overlay">
+  <div class="overlay-content">
+    <button class="btn btn-dark btn-lg btn-block"> Accept </button>
+    <button (click)="closeOverlay()" class="btn btn-dark btn-lg btn-block"> Decline </button>
+  </div>
+</div>
+
 
 
 <!--<table cellspacing="0" align="center">-->

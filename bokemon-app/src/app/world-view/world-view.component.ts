@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {WorldMapService} from '../world-map.service';
 import {WorldMap} from '../WorldMap';
-import {WorldView} from '../WorldView';
 import {TileService} from '../tile.service';
 import {Tile} from '../Tile';
 
@@ -19,16 +18,14 @@ import {Player} from "../Player";
   styleUrls: ['./world-view.component.css']
 })
 export class WorldViewComponent implements OnInit {
-  worldMap: WorldMap;
-  worldView: WorldView;
-  viewNumbers: number[][];
-  viewTiles: Tile[][];
 
   username: string = localStorage.getItem("player");
   player: Player;
 
   tileMap: TileMap;
-  tileView: Tile[][];
+  //tileView: Tile[][];
+  spriteView: string[][];
+  overlay: boolean = true;
 
   testSting: string;
 
@@ -38,16 +35,28 @@ export class WorldViewComponent implements OnInit {
   // public logOutPage = this.fb.group({
   // });
 
-  constructor(private worldMapService: WorldMapService, private tileService: TileService, private playerService: PlayerService, private router: Router) { }
+  constructor(
+    private worldMapService: WorldMapService,
+    private tileService: TileService,
+    private playerService: PlayerService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    this.getTileMap();
     this.getPlayer();
+    this.getTileMap();
+  }
+
+  public closeOverlay(): void {
+    this.overlay = false;
+  }
+
+  public onEncounter(): void {
+    this.overlay = true;
   }
 
   movePlayerUpdate(dx:number, dy: number): void {
     this.movePlayer(dx, dy);
-    this.getTileMap();
   }
 
   movePlayer(dx: number, dy: number): void {
@@ -56,8 +65,14 @@ export class WorldViewComponent implements OnInit {
     if (this.tileMap.isMoveable(xPos, yPos)) {
       this.player.x += dx;
       this.player.y += dy;
+      this.spriteView = this.tileMap.getViewSprites(this.player.x, this.player.y, 6, 6, this.player.sprite);
+      if (this.tileMap.hasBokemon(xPos, yPos)) {
+        this.onEncounter();
+      }
     }
   }
+
+
 
   getTileMap(): void {
     this.worldMapService.findById(7)
@@ -65,7 +80,8 @@ export class WorldViewComponent implements OnInit {
         this.tileService.findAll()
           .subscribe(tiles => {
             this.tileMap = new TileMap(tiles, worldMap);
-            this.tileView = this.tileMap.getView(this.player.x, this.player.y, 3, 3);
+            //this.tileView = this.tileMap.getView(this.player.x, this.player.y, 3, 3);
+            this.spriteView = this.tileMap.getViewSprites(this.player.x, this.player.y, 3, 3, this.player.sprite);
           });
       });
   }
@@ -79,28 +95,9 @@ export class WorldViewComponent implements OnInit {
       })
   }
 
-
   logOut(){
     localStorage.setItem("player", "");
     this.router.navigate(['login-page'])
   }
-
-  // getWorldMap(): void {
-  //   this.worldMapService.findById(7)
-  //     .subscribe(worldMap => {
-  //       this.worldMap = worldMap;
-  //       this.viewNumbers = this.worldView.getViewNumbers(7, 4, worldMap);
-  //
-  //       this.viewTiles = [];
-  //       for (let y = 0; y < this.viewNumbers.length; y++) {
-  //         this.viewTiles[y] = [];
-  //         for (let x = 0; x < this.viewNumbers[0].length; x++) {
-  //           this.tileService.findById(this.viewNumbers[y][x]).subscribe( tile => {
-  //             this.viewTiles[y][x] = tile;
-  //           });
-  //         }
-  //       }
-  //     });
-  // }
 
 }
