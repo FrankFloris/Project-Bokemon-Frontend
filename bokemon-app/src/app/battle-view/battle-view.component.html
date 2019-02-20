@@ -1,1 +1,24 @@
-<button (click)="onNewBokemon()">create new bokemon</button>
+
+
+<!--<body style="background-image:url('https://images.pexels.com/photos/418831/pexels-photo-418831.jpeg?auto=compress&cs=tinysrgb&h=650&w=940');">-->
+<!--</body>-->
+<button (click)="createWildBokemon()">create new bokemon</button>
+<p></p>
+
+<div *ngIf="wildBokemon">
+  <div>A wild Bokemon appeared!</div>
+  <div>{{"Wild " + wildBokemon.template.name + " Level: " + wildBokemon.lvl + " Hitpoints: " + wildBokemon.hp}}</div>
+  <p></p>
+  <img *ngIf="wildBokemon" src="{{wildBokemon.template.sprite}}">
+</div>
+
+<div *ngIf="playerBokemon">
+  <p></p>
+  <button (click)="attackBokemon()">Attack!</button><button (click)="useItem()">Use item</button>
+  <button (click)="catchBokemon()">Catch Bokemon</button><button (click)="run()">Run from battle</button>
+  <p></p>
+  <div>Fight it with your Bokemon!</div>
+  <div>{{"Your darling " + playerBokemon.template.name + " Level: " + playerBokemon.lvl + " Hitpoints: " + playerBokemon.hp}}</div>
+  <p></p>
+  <img *ngIf="playerBokemon" src="{{playerBokemon.template.sprite}}">
+</div>

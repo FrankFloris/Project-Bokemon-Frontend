@@ -94,7 +94,7 @@ export class SignupComponent implements OnInit {
 
 
     //
-    // this.signupService.saveUser(new Player( 0, username, password, world, sprite, x, y, bokemon)).
+    // this.signupService.saveUser(new Player( 0, username, password, world, sprite, x, y, wildBokemon)).
     // subscribe(player =>{
     //   console.log("Signup complete");
     //   this.router.navigate(['world-view']);
