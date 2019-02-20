@@ -4,6 +4,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {Player} from '../Player';
 import { Router} from '@angular/router';
 import {PopupService} from '../popup.service';
+import {BokemonService} from '../bokemon.service';
 
 // import { FormBuilder} from '@angular/forms';
 
@@ -35,10 +36,11 @@ export class LoginPageComponent implements OnInit {
     const password = this.loginPage.controls['password'].value;
     const world = 8;
     const sprite = "https://i.imgur.com/iwnZWVy.png";
-    const x = 0;
+    const x = 3;
     const y = 0;
+    const bokemons = "";
 
-    this.loginService.authenticate(new Player(0, username, password, world, sprite, x, y)).subscribe( result => {
+    this.loginService.authenticate(new Player(0, username, password, world, sprite, x, y, bokemons)).subscribe( result => {
       console.log(result)
       if(result == true){
         console.log("HOI")
@@ -57,5 +59,6 @@ export class LoginPageComponent implements OnInit {
   public goToSignup() {
     this.router.navigate(['signup'])
   }
+
 
 }

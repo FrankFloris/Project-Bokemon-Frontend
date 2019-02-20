@@ -64,12 +64,12 @@ export class SignupComponent implements OnInit {
     const sprite = "https:/"
     const x = 0;
     const y = 0;
+    const bokemons = "";
 
-    this.signupService.saveUser(new Player( 0, username, password, world, sprite, x, y)).
+    this.signupService.saveUser(new Player( 0, username, password, world, sprite, x, y, bokemons)).
     subscribe(player =>{
       console.log("Signup complete");
       this.router.navigate(['world-view']);
-      // DIT MOET NOG WORDEN AANGEPAST NAAR WORLD VIEW
       }
       );
     
