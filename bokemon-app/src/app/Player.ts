@@ -13,9 +13,9 @@ export class Player {
   sprite: string;
   x: number;
   y: number;
-  bokemons: string;
+  bokemon: Bokemon;
 
-  constructor(id: number, username: string, password: string, world: number, sprite: string, x: number, y: number, bokemons: string) {
+  constructor(id: number, username: string, password: string, world: number, sprite: string, x: number, y: number, bokemon: Bokemon) {
     this.id = id;
     this.username = username;
     this.password = password;
@@ -23,7 +23,7 @@ export class Player {
     this.sprite = sprite;
     this.x = x;
     this.y = y;
-    this.bokemons = bokemons;
+    this.bokemon = bokemon;
   }
 
   //

@@ -5,6 +5,7 @@ import {Player} from '../Player';
 import { Router} from '@angular/router';
 import {PopupService} from '../popup.service';
 import {BokemonService} from '../bokemon.service';
+import {Bokemon} from '../bokemon';
 
 // import { FormBuilder} from '@angular/forms';
 
@@ -30,31 +31,31 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  public verifyUser (event) {
-    const username = this.loginPage.controls['username'].value;
-    const password = this.loginPage.controls['password'].value;
-    const world = 8;
-    const sprite = "https://i.imgur.com/iwnZWVy.png";
-    const x = 3;
-    const y = 0;
-    const bokemons = "";
-
-    this.loginService.authenticate(new Player(0, username, password, world, sprite, x, y, bokemons)).subscribe( result => {
-      console.log(result)
-      if(result == true){
-        console.log("HOI")
-        localStorage.setItem("player", (this.loginPage.controls['username'].value).toString())
-        console.log(localStorage.getItem("player"))
-        window.alert("Current player is: " + localStorage.getItem("player"))
-        this.router.navigate(['world-view'])
-      }
-      else {
-        window.alert("Your username or password was incorrect, please try again.")
-        // this.popup.showAsComponent("Your username or password was incorrect, please try again.")
-        }
-    })
-  }
+  //
+  // public verifyUser (event) {
+  //   const username = this.loginPage.controls['username'].value;
+  //   const password = this.loginPage.controls['password'].value;
+  //   const world = 8;
+  //   const sprite = "https://i.imgur.com/iwnZWVy.png";
+  //   const x = 3;
+  //   const y = 0;
+  //   const bokemon = "";
+  //
+  //   this.loginService.authenticate(new Player(0, username, password, world, sprite, x, y, bokemon)).subscribe( result => {
+  //     console.log(result)
+  //     if(result == true){
+  //       console.log("HOI")
+  //       localStorage.setItem("player", (this.loginPage.controls['username'].value).toString())
+  //       console.log(localStorage.getItem("player"))
+  //       window.alert("Current player is: " + localStorage.getItem("player"))
+  //       this.router.navigate(['world-view'])
+  //     }
+  //     else {
+  //       window.alert("Your username or password was incorrect, please try again.")
+  //       // this.popup.showAsComponent("Your username or password was incorrect, please try again.")
+  //       }
+  //   })
+  // }
 
   public goToSignup() {
     this.router.navigate(['signup'])
@@ -62,3 +63,4 @@ export class LoginPageComponent implements OnInit {
 
 
 }
+

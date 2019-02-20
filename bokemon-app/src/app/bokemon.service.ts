@@ -16,11 +16,11 @@ export class BokemonService {
 
 
 
-  createBokemon(bokemon: Bokemon) {
+  createBokemon(bokemon: Bokemon) : Observable<Bokemon>{
     //Observable<BokemonTemplate> list =
 
-    return this.http.post( 'http://localhost:8080/bokemon',
-      bokemon).pipe(catchError(this.handleError<Bokemon>( 'createBokemon')));
+    return this.http.post<Bokemon>( 'http://localhost:8080/bokemon',
+      bokemon);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
