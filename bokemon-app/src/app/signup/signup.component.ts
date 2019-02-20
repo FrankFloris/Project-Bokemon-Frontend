@@ -5,8 +5,9 @@ import {Player} from '../Player';
 import { Router} from '@angular/router';
 import {PopupService} from '../popup.service';
 import {LoginService} from '../login.service';
-// import {start} from 'repl';
-
+import {Bokemon} from '../bokemon';
+import {BokemonService} from '../bokemon.service';
+import {BokemonTemplateService} from '../bokemon-template.service';
 
 @Component({
   selector: 'app-signup',
@@ -25,7 +26,8 @@ export class SignupComponent implements OnInit {
   });
 
   constructor(public fb: FormBuilder, private signupService: SignupService,
-              private router: Router, private popup: PopupService) { }
+              private router: Router, private popup: PopupService,
+              private bokemonService: BokemonService, private templateService: BokemonTemplateService) { }
   //, private router: Router    dit kan misschien in de constructor
 
   ngOnInit() {
@@ -62,16 +64,42 @@ export class SignupComponent implements OnInit {
     const password = this.signupPage.controls['password'].value;
     const world = 8;
     const sprite = "https://i.imgur.com/iwnZWVy.png"
-    const x = 0;
+    const x = 3;
     const y = 0;
+    // const bokemons = "";
 
-    this.signupService.saveUser(new Player( 0, username, password, world, sprite, x, y)).
-    subscribe(player =>{
-      console.log("Signup complete");
-      this.router.navigate(['world-view']);
-      // DIT MOET NOG WORDEN AANGEPAST NAAR WORLD VIEW
-      }
-      );
+    this.templateService.findAll().subscribe(bokemonTemplates => {
+      let temp = bokemonTemplates[0]; // frank
+      console.log(JSON.stringify(temp));
+      let bokemon: Bokemon = new Bokemon(0, temp, 1);   // lvl ook random maken
+      console.log(bokemon.lvl);
+      this.bokemonService.createBokemon(bokemon).subscribe(br=>{
+        console.log(bokemon);
+        console.log(JSON.stringify(bokemon));
+        this.signupService.saveUser(new Player( 0, username, password, world, sprite, x, y, br)).
+        subscribe(player =>{
+            console.log(bokemon.lvl)
+            console.log("Signup complete");
+            this.router.navigate(['world-view']);
+          }
+        );
+      });
+
+
+    });
+
+
+
+
+
+
+    //
+    // this.signupService.saveUser(new Player( 0, username, password, world, sprite, x, y, bokemon)).
+    // subscribe(player =>{
+    //   console.log("Signup complete");
+    //   this.router.navigate(['world-view']);
+    //   }
+    //   );
     
     
   }

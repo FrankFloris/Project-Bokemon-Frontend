@@ -24,5 +24,6 @@ export class PlayerService {
       return of(result as T);
     };
   }
+
 }
 

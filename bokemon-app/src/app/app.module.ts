@@ -16,6 +16,7 @@ import {PopupService} from './popup.service';
 import {PopupComponent} from './popup.component';
 import { LogoutComponent } from './logout/logout.component';
 import {WorldviewGuardService} from './worldview-guard.service';
+import { BattleViewComponent } from './battle-view/battle-view.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {WorldviewGuardService} from './worldview-guard.service';
     SignupComponent,
     PopupComponent,
     LogoutComponent,
+    BattleViewComponent,
 
   ],
   imports: [
