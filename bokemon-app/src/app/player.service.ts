@@ -18,6 +18,10 @@ export class PlayerService {
     )
   }
 
+  updatePlayer(player: Player): Observable<Player> {
+    return this.http.patch<Player>('http://localhost:8080/player/', player).pipe();
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

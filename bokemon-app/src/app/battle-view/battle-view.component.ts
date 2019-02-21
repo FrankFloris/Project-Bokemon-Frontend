@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {Bokemon} from '../bokemon';
 import {BokemonTemplateService} from '../bokemon-template.service';
 import {BokemonService} from '../bokemon.service';
+import {Router} from '@angular/router';
+import {AuthenticationService} from '../authentication.service';
+import {Player} from '../Player';
+import {PlayerService} from '../player.service';
 
 @Component({
   selector: 'app-battle-view',
@@ -10,15 +14,22 @@ import {BokemonService} from '../bokemon.service';
 })
 export class BattleViewComponent implements OnInit {
 
-  constructor(private bokemonService: BokemonService, private templateService: BokemonTemplateService) { }
+  constructor(
+    private bokemonService: BokemonService,
+    private templateService: BokemonTemplateService,
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private playerService: PlayerService
+  ) { }
 
-
+  player: Player;
   wildBokemon: Bokemon;
   playerBokemon: Bokemon;
 
   ngOnInit() {
     this.createWildBokemon();
     this.getPlayerBokemon();
+    this.getPlayer();
   }
 
 
@@ -28,11 +39,20 @@ export class BattleViewComponent implements OnInit {
       this.wildBokemon = new Bokemon(0, temp, (Math.floor(Math.random()*5)+1));   // lvl ook random maken
     });
   }
-  private getPlayerBokemon() {
-    this.templateService.findAll().subscribe(bokemonTemplates => {
-      let temp = bokemonTemplates[(Math.floor(Math.random()*bokemonTemplates.length))]; // frank
-      this.playerBokemon = new Bokemon(0, temp, (Math.floor(Math.random()*5)+1));   // lvl ook random maken
-    });
+
+  private getPlayer() {
+    this.player = this.authenticationService.currentPlayer;
+  }
+  // private getPlayerBokemon() {
+  //   this.templateService.findAll().subscribe(bokemonTemplates => {
+  //     let temp = bokemonTemplates[(Math.floor(Math.random()*bokemonTemplates.length))]; // frank
+  //     this.playerBokemon = new Bokemon(0, temp, (Math.floor(Math.random()*5)+1));   // lvl ook random maken
+  //   });
+  // }
+
+  private getPlayerBokemon(){
+    this.playerBokemon = this.authenticationService.currentPlayer.bokemon;
+    // this.playerBokemon = this.player.bokemon;
   }
 
   // displayImage(): void{
@@ -45,6 +65,10 @@ export class BattleViewComponent implements OnInit {
       this.wildBokemon.hp -= damageToWildBokemon;
       if (this.wildBokemon.hp <= 0){
         window.alert("YOU ARE VICTORIOUS!!!")
+        this.player.bokemon.lvl += 1;
+        // this.authenticationService.currentPlayer.bokemon.lvl += 1;
+        // this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("CHECK")})
+        this.bokemonService.updateBokemon(this.player.bokemon).subscribe(()=>{console.log("BOKE")})
         }
       else {
         let damageToPlayerBokemon = Math.round(this.wildBokemon.atk * (100 / (100 + this.playerBokemon.def)));
@@ -65,6 +89,10 @@ export class BattleViewComponent implements OnInit {
         this.wildBokemon.hp -= damageToWildBokemon;
         if (this.wildBokemon.hp <= 0){
           window.alert("YOU ARE VICTORIOUS!!!")
+          this.player.bokemon.lvl += 1;
+          // this.authenticationService.currentPlayer.bokemon.lvl += 1;
+          // this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("CHECK")})
+          this.bokemonService.updateBokemon(this.player.bokemon).subscribe(()=>{console.log("BOKE")})
         }
       }
     }
@@ -79,8 +107,7 @@ export class BattleViewComponent implements OnInit {
   }
 
   run() {
-    console.log("You cannot run from battle")
+    this.router.navigate(['world-view'])
   }
-
 
 }

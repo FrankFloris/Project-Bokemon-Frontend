@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'login-page', component: LoginPageComponent},
   {path: 'world-view', component: WorldViewComponent, canActivate: [WorldviewGuardService]},
   {path: 'signup', component: SignupComponent},
-  {path: 'battle-view', component: BattleViewComponent},
+  {path: 'world-view/battle-view', component: BattleViewComponent, canActivate: [WorldviewGuardService]},
   {path: '', component: LoginPageComponent},
   {path: '**', component: LoginPageComponent}
 ];
