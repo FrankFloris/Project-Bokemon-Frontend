@@ -1,29 +1,73 @@
-
-
-<!--<body style="background-image:url('https://images.pexels.com/photos/418831/pexels-photo-418831.jpeg?auto=compress&cs=tinysrgb&h=650&w=940');">-->
-<!--</body>-->
-
-<!--<button (click)="createWildBokemon()">create new bokemon</button>-->
-<!--<p></p>-->
-
-<div *ngIf="wildBokemon">
-  <div>{{"A wild " + wildBokemon.template.name + " appeared!"}}</div>
-  <div>{{"Level: " + wildBokemon.lvl + " Hitpoints: " + wildBokemon.hp + "/" + wildBokemon.maxHp}}</div>
-  <p></p>
-  <img *ngIf="wildBokemon" src="{{wildBokemon.template.sprite}}">
-
+<div class="jumbotron jumbotron-fluid">
+  <div class="container" align="center">
+    <h1 class="display-4">🅱️ATTLE!!!</h1>
+    <!--<p class="lead">Welcome to the wonderous world of Bokemon.</p>-->
+  </div>
 </div>
+<div align="center" *ngIf="wildBokemon">{{"A wild " + wildBokemon.template.name + " appeared!"}}</div>
+<div align="center" *ngIf="playerBokemon">{{"Fight it with your " + playerBokemon.template.name}}</div>
+<p></p>
+<table align="center">
+  <tr>
+   <td style="background-color: darkseagreen">
+     <div *ngIf="playerBokemon">
+       <div>{{playerBokemon.template.name}}</div>
+       <div>{{" Level: " + playerBokemon.lvl + " Hitpoints: " + playerBokemon.hp + "/" + playerBokemon.maxHp}}</div>
+       <p></p>
+       <img *ngIf="playerBokemon" src="{{playerBokemon.template.sprite}}">
+     </div>
+   </td>
+    <td></td>
+    <td><H5>VS</H5></td>
+    <td></td>
+    <td style="background-color: #dbbfc4">
+      <div *ngIf="wildBokemon">
+        <div>{{wildBokemon.template.name}}</div>
+        <div>{{"Level: " + wildBokemon.lvl + " Hitpoints: " + wildBokemon.hp + "/" + wildBokemon.maxHp}}</div>
+        <p></p>
+        <img *ngIf="wildBokemon" src="{{wildBokemon.template.sprite}}">
+      </div>
+    </td>
+  </tr>
+</table>
 
-<div *ngIf="playerBokemon">
-  <p></p>
-  <button (click)="attackBokemon()">Attack!</button><button (click)="useItem()">Use item</button>
-  <button (click)="catchBokemon()">Catch Bokemon</button><button (click)="run()">Run from battle</button>
-  <p></p>
-  <div>{{"Fight it with your " + playerBokemon.template.name}}</div>
-  <div>{{" Level: " + playerBokemon.lvl + " Hitpoints: " + playerBokemon.hp + "/" + playerBokemon.maxHp}}</div>
-  <p></p>
-  <img *ngIf="playerBokemon" src="{{playerBokemon.template.sprite}}">
-</div>
+<p></p>
+<table align="center">
+  <tr>
+    <td><button class="btn btn-primary btn-lg btn-block" (click)="attackBokemon()">Attack!</button></td>
+    <td><button class="btn btn-primary btn-lg btn-block" (click)="useItem()">Use item</button></td>
+  </tr>
+  <tr>
+    <td><button class="btn btn-primary btn-lg btn-block" (click)="catchBokemon()">Catch Bokemon</button></td>
+    <td><button class="btn btn-primary btn-lg btn-block" (click)="run()">Run from battle</button></td>
+  </tr>
+<p></p>
+</table>
 
-<div [innerHTML]="battleText" *ngIf="wildBokemon && playerBokemon"></div>
+<div align="center" [innerHTML]="battleText" *ngIf="wildBokemon && playerBokemon"></div>
+
+
+
+
+
+
+<!--<div *ngIf="wildBokemon">-->
+  <!--<div>{{"A wild " + wildBokemon.template.name + " appeared!"}}</div>-->
+  <!--<div>{{"Level: " + wildBokemon.lvl + " Hitpoints: " + wildBokemon.hp + "/" + wildBokemon.maxHp}}</div>-->
+  <!--<p></p>-->
+  <!--<img *ngIf="wildBokemon" src="{{wildBokemon.template.sprite}}">-->
+<!--</div>-->
+
+<!--<div *ngIf="playerBokemon">-->
+  <!--<p></p>-->
+  <!--<button (click)="attackBokemon()">Attack!</button><button (click)="useItem()">Use item</button>-->
+  <!--<button (click)="catchBokemon()">Catch Bokemon</button><button (click)="run()">Run from battle</button>-->
+  <!--<p></p>-->
+  <!--<div>{{"Fight it with your " + playerBokemon.template.name}}</div>-->
+  <!--<div>{{" Level: " + playerBokemon.lvl + " Hitpoints: " + playerBokemon.hp + "/" + playerBokemon.maxHp}}</div>-->
+  <!--<p></p>-->
+  <!--<img *ngIf="playerBokemon" src="{{playerBokemon.template.sprite}}">-->
+<!--</div>-->
+
+<!--<div [innerHTML]="battleText" *ngIf="wildBokemon && playerBokemon"></div>-->
 

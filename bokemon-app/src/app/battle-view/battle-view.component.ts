@@ -36,7 +36,7 @@ export class BattleViewComponent implements OnInit {
   createWildBokemon(): void {
     this.templateService.findAll().subscribe(bokemonTemplates => {
       let temp = bokemonTemplates[(Math.floor(Math.random()*bokemonTemplates.length))]; // frank
-      this.wildBokemon = new Bokemon(0, temp, (Math.floor(Math.random()*5)+1));   // lvl ook random maken
+      this.wildBokemon = new Bokemon(0, temp, (Math.floor(Math.random()*(this.playerBokemon.lvl-2))+1));   // lvl ook random maken
     });
   }
 
