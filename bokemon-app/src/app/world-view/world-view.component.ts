@@ -10,6 +10,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {TileMap} from "../TileMap";
 import {PlayerService} from "../player.service";
 import {Player} from "../Player";
+import {AuthenticationService} from "../authentication.service";
 
 
 @Component({
@@ -19,7 +20,7 @@ import {Player} from "../Player";
 })
 export class WorldViewComponent implements OnInit {
 
-  username: string = localStorage.getItem("player");
+  //username: string = localStorage.getItem("player");
   player: Player;
 
   tileMap: TileMap;
@@ -39,6 +40,7 @@ export class WorldViewComponent implements OnInit {
     private worldMapService: WorldMapService,
     private tileService: TileService,
     private playerService: PlayerService,
+    private authenticationService: AuthenticationService,
     private router: Router
   ) { }
 
@@ -72,8 +74,6 @@ export class WorldViewComponent implements OnInit {
     }
   }
 
-
-
   getTileMap(): void {
     this.worldMapService.findById(7)
       .subscribe(worldMap => {
@@ -87,16 +87,17 @@ export class WorldViewComponent implements OnInit {
   }
 
   getPlayer(): void {
-    this.playerService.findByUsername(this.username)
-      .subscribe(players=> {
-        this.player = players[0];
-        this.getTileMap();
-        this.player.x = 2;
-      })
+    this.player = this.authenticationService.currentPlayer;
+    // this.playerService.findByUsername(this.username)
+    //   .subscribe(players=> {
+    //     this.player = players[0];
+    //     this.getTileMap();
+    //     this.player.x = 2;
+    //   })
   }
 
   logOut(){
-    localStorage.setItem("player", "");
+    this.authenticationService.logout();
     this.router.navigate(['login-page'])
   }
 
