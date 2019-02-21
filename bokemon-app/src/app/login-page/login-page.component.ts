@@ -40,7 +40,7 @@ export class LoginPageComponent implements OnInit {
     // Attempt to log in
     this.authenticationService.login(username, password).subscribe( player => {
       if (player) {
-        window.alert('current player: ' + player.username);
+        //window.alert('current player: ' + player.username);
         this.router.navigate(['world-view'])
       } else {
         window.alert('username and password not found');
