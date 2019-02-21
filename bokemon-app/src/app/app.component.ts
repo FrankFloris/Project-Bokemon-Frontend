@@ -9,7 +9,7 @@ import {PopupService} from './popup.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'bokemon-app';
+  title = 'wildBokemon-app';
   constructor(injector: Injector, public popup: PopupService) {
     // Convert `PopupComponent` to a custom element.
     const PopupElement = createCustomElement(PopupComponent, {injector});

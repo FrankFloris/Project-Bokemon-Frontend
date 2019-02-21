@@ -19,7 +19,7 @@ export class BokemonService {
   createBokemon(bokemon: Bokemon) : Observable<Bokemon>{
     //Observable<BokemonTemplate> list =
 
-    return this.http.post<Bokemon>( 'http://localhost:8080/bokemon',
+    return this.http.post<Bokemon>( 'http://localhost:8080/wildBokemon',
       bokemon);
   }
 

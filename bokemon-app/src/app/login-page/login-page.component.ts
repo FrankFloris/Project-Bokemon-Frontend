@@ -59,9 +59,9 @@ export class LoginPageComponent implements OnInit {
   //   const sprite = "https://i.imgur.com/iwnZWVy.png";
   //   const x = 3;
   //   const y = 0;
-  //   const bokemon = "";
+  //   const wildBokemon = "";
   //
-  //   this.loginService.authenticate(new Player(0, username, password, world, sprite, x, y, bokemon)).subscribe( result => {
+  //   this.loginService.authenticate(new Player(0, username, password, world, sprite, x, y, wildBokemon)).subscribe( result => {
   //     console.log(result)
   //     if(result == true){
   //       console.log("HOI")
