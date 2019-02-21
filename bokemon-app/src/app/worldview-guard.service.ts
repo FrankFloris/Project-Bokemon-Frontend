@@ -1,7 +1,6 @@
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
-import {AuthGuardService} from './guards/auth-guard.service';
 import {AuthenticationService} from "./authentication.service";
 
 @Injectable()
@@ -19,12 +18,6 @@ export class WorldviewGuardService implements CanActivate {
 
     this.router.navigate(['login-page']);
     return false;
-
-    // if ((localStorage.getItem("player")) == ''){
-    //   this.router.navigate(['login-page']);
-    //   return false;
-    // }
-    // else return true;
   }
 
 }

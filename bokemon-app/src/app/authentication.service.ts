@@ -21,12 +21,21 @@ export class AuthenticationService {
 
   login(username: string, password: string) {
     return this.http.post<any>('http://localhost:8080/login', new LoginForm(username, password))
-      .subscribe(player => {
-        if (player) {
-          localStorage.setItem('currentPlayer', JSON.stringify(player));
-          this._currentPlayer = player;
-        }
-      })
+      .pipe(map(player => {
+          if (player) {
+            localStorage.setItem('currentPlayer', JSON.stringify(player));
+            this._currentPlayer = player;
+          }
+
+          return player;
+      }));
+
+      // .subscribe(player => {
+      //   if (player) {
+      //     localStorage.setItem('currentPlayer', JSON.stringify(player));
+      //     this._currentPlayer = player;
+      //   }
+      // })
   }
 
   logout() {

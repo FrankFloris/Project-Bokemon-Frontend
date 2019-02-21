@@ -3,8 +3,6 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {SignupService} from '../signup.service';
 import {Player} from '../Player';
 import { Router} from '@angular/router';
-import {PopupService} from '../popup.service';
-import {LoginService} from '../login.service';
 import {Bokemon} from '../bokemon';
 import {BokemonService} from '../bokemon.service';
 import {BokemonTemplateService} from '../bokemon-template.service';
@@ -13,7 +11,7 @@ import {BokemonTemplateService} from '../bokemon-template.service';
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
-  providers: [SignupService, PopupService]
+  providers: [SignupService]
 })
 export class SignupComponent implements OnInit {
 
@@ -25,9 +23,12 @@ export class SignupComponent implements OnInit {
     password: ['', Validators.required]
   });
 
-  constructor(public fb: FormBuilder, private signupService: SignupService,
-              private router: Router, private popup: PopupService,
-              private bokemonService: BokemonService, private templateService: BokemonTemplateService) { }
+  constructor(public fb: FormBuilder,
+              private signupService: SignupService,
+              private router: Router,
+              private bokemonService: BokemonService,
+              private templateService: BokemonTemplateService
+  ) { }
   //, private router: Router    dit kan misschien in de constructor
 
   ngOnInit() {
