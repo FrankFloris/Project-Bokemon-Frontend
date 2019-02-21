@@ -6,6 +6,7 @@ import { Router} from '@angular/router';
 import {PopupService} from '../popup.service';
 import {BokemonService} from '../bokemon.service';
 import {Bokemon} from '../bokemon';
+import {AuthenticationService} from "../authentication.service";
 
 // import { FormBuilder} from '@angular/forms';
 
@@ -26,11 +27,30 @@ export class LoginPageComponent implements OnInit {
     password: ['', Validators.required]
   });
 
-  constructor(public fb: FormBuilder, private loginService: LoginService,
-              private router: Router, private popup: PopupService) {}
+  constructor(public fb: FormBuilder,
+              private loginService: LoginService,
+              private authenticationService: AuthenticationService,
+              private router: Router) { }
 
   ngOnInit() {
   }
+
+  public onLogin(event) {
+    // Get username and password from login forms
+    const username = this.loginPage.controls['username'].value;
+    const password = this.loginPage.controls['password'].value;
+
+    // Attempt to log in
+    this.authenticationService.login(username, password);
+
+    if (this.authenticationService.currentPlayer) {
+      window.alert('current player: ' + this.authenticationService.currentPlayer.username);
+      this.router.navigate(['world-view'])
+    } else {
+      window.alert('username and password not found');
+    }
+  }
+
   //
   // public verifyUser (event) {
   //   const username = this.loginPage.controls['username'].value;
