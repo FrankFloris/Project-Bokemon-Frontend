@@ -26,7 +26,7 @@ export class WorldViewComponent implements OnInit {
   tileMap: TileMap;
   //tileView: Tile[][];
   spriteView: string[][];
-  overlay: boolean = true;
+  overlay: boolean = false;
 
   testSting: string;
 
@@ -82,7 +82,7 @@ export class WorldViewComponent implements OnInit {
           .subscribe(tiles => {
             this.tileMap = new TileMap(tiles, worldMap);
             //this.tileView = this.tileMap.getView(this.player.x, this.player.y, 3, 3);
-            this.spriteView = this.tileMap.getViewSprites(this.player.x, this.player.y, 3, 3, this.player.sprite);
+            this.spriteView = this.tileMap.getViewSprites(this.player.x, this.player.y, 6, 6, this.player.sprite);
           });
       });
   }
