@@ -12,8 +12,6 @@ import { SignupComponent } from './signup/signup.component';
 // import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {PopupService} from './popup.service';
-import {PopupComponent} from './popup.component';
 import { LogoutComponent } from './logout/logout.component';
 import {WorldviewGuardService} from './worldview-guard.service';
 import { BattleViewComponent } from './battle-view/battle-view.component';
@@ -25,7 +23,6 @@ import { BattleViewComponent } from './battle-view/battle-view.component';
     WorldViewComponent,
     LoginPageComponent,
     SignupComponent,
-    PopupComponent,
     LogoutComponent,
     BattleViewComponent,
 
@@ -37,8 +34,8 @@ import { BattleViewComponent } from './battle-view/battle-view.component';
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [PopupService, WorldviewGuardService],
+  providers: [WorldviewGuardService],
   bootstrap: [AppComponent],
-  entryComponents: [PopupComponent]
+  entryComponents: []
 })
 export class AppModule { }
