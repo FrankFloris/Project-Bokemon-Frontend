@@ -9,6 +9,7 @@ export class Bokemon {
   lvl: number;
 
   name: string;
+  maxHp: number;
   hp: number;
   atk: number;
   def: number;
@@ -22,6 +23,7 @@ export class Bokemon {
     this.lvl = lvl;
 
     this.name = template.name;
+    this.maxHp = template.baseHp + template.deltaHp*this.lvl;
     this.hp = template.baseHp + template.deltaHp*this.lvl;
     this.atk = template.baseAtk + template.deltaAtk*this.lvl;
     this.def = template.baseDef + template.deltaDef*this.lvl;

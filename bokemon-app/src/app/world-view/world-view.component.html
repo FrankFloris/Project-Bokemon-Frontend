@@ -40,7 +40,7 @@
 
 <div *ngIf="overlay" class="overlay">
   <div class="overlay-content">
-    <button class="btn btn-dark btn-lg btn-block"> Accept </button>
+    <button (click)="enterBattle()" class="btn btn-dark btn-lg btn-block"> Accept </button>
     <button (click)="closeOverlay()" class="btn btn-dark btn-lg btn-block"> Decline </button>
   </div>
 </div>

@@ -91,7 +91,7 @@ export class WorldViewComponent implements OnInit {
       .subscribe(players=> {
         this.player = players[0];
         this.getTileMap();
-        this.player.x = 2;
+        // this.player.x = 2;
       })
   }
 
@@ -100,4 +100,10 @@ export class WorldViewComponent implements OnInit {
     this.router.navigate(['login-page'])
   }
 
+  enterBattle() {
+    this.playerService.updatePlayer(this.player).subscribe(data=>{console.log("CHECK")})
+
+
+    this.router.navigate(['world-view/battle-view'])
+  }
 }

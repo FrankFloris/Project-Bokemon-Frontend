@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Bokemon} from '../bokemon';
 import {BokemonTemplateService} from '../bokemon-template.service';
 import {BokemonService} from '../bokemon.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-battle-view',
@@ -10,7 +11,11 @@ import {BokemonService} from '../bokemon.service';
 })
 export class BattleViewComponent implements OnInit {
 
-  constructor(private bokemonService: BokemonService, private templateService: BokemonTemplateService) { }
+  constructor(
+    private bokemonService: BokemonService,
+    private templateService: BokemonTemplateService,
+    private router: Router
+  ) { }
 
 
   wildBokemon: Bokemon;
@@ -79,7 +84,7 @@ export class BattleViewComponent implements OnInit {
   }
 
   run() {
-    console.log("You cannot run from battle")
+    this.router.navigate(['world-view'])
   }
 
 

@@ -7,7 +7,8 @@
 
 <div *ngIf="wildBokemon">
   <div>A wild Bokemon appeared!</div>
-  <div>{{"Wild " + wildBokemon.template.name + " Level: " + wildBokemon.lvl + " Hitpoints: " + wildBokemon.hp}}</div>
+  <div>{{"Wild " + wildBokemon.template.name + " Level: " + wildBokemon.lvl}}</div>
+  <div>{{"Hitpoints: " + wildBokemon.hp + "/" + wildBokemon.maxHp}}</div>
   <p></p>
   <img *ngIf="wildBokemon" src="{{wildBokemon.template.sprite}}">
 </div>
@@ -18,7 +19,8 @@
   <button (click)="catchBokemon()">Catch Bokemon</button><button (click)="run()">Run from battle</button>
   <p></p>
   <div>Fight it with your Bokemon!</div>
-  <div>{{"Your darling " + playerBokemon.template.name + " Level: " + playerBokemon.lvl + " Hitpoints: " + playerBokemon.hp}}</div>
+  <div>{{"Your darling " + playerBokemon.template.name + " Level: " + playerBokemon.lvl}}</div>
+  <div>{{"Hitpoints: " + playerBokemon.hp + "/" + playerBokemon.maxHp}}</div>
   <p></p>
   <img *ngIf="playerBokemon" src="{{playerBokemon.template.sprite}}">
 </div>
