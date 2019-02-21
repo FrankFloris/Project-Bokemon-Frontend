@@ -1,17 +1,18 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import {SignupService} from '../signup.service';
 import {Player} from '../Player';
 import { Router} from '@angular/router';
 import {Bokemon} from '../bokemon';
 import {BokemonService} from '../bokemon.service';
 import {BokemonTemplateService} from '../bokemon-template.service';
+import {PlayerService} from "../player.service";
+import {AuthenticationService} from "../authentication.service";
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
-  providers: [SignupService]
+  providers: []
 })
 export class SignupComponent implements OnInit {
 
@@ -24,7 +25,8 @@ export class SignupComponent implements OnInit {
   });
 
   constructor(public fb: FormBuilder,
-              private signupService: SignupService,
+              private playerService: PlayerService,
+              private authenticationService: AuthenticationService,
               private router: Router,
               private bokemonService: BokemonService,
               private templateService: BokemonTemplateService
@@ -34,78 +36,45 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
-  public checkUser(event){
-  this.signupService.findAll().subscribe(
-    player => {
-      this.players = player;
-      var gevonden : boolean;
-      gevonden = false;
-      console.log("TEST")
-      for (let x= 0; x < this.players.length; x++) {
-        if (this.players[x].username == this.signupPage.controls['username'].value) {
-          gevonden = true;
-          console.log("MAG NIET!!! ALARM!!!!");
-          window.alert("This username is not available, please choose a different username")
-          // this.popup.showAsComponent("This username is not available, please choose a different username")
-          // this.popup.showAsElement(<button>);
-          break;
-        }
-      }
-      if (!gevonden) {
-        console.log("Niet gevonden!");
-        this.saveNewUser();
-        localStorage.setItem("player", (this.signupPage.controls['username'].value))
-      }
-  })
-  }
-
-  public saveNewUser() {
-
+  public onSignup(event) {
     const username = this.signupPage.controls['username'].value;
     const password = this.signupPage.controls['password'].value;
-    const world = 8;
-    const sprite = "https://i.imgur.com/iwnZWVy.png"
-    const x = 3;
-    const y = 0;
-    // const bokemons = "";
 
-    this.templateService.findAll().subscribe(bokemonTemplates => {
-      let temp = bokemonTemplates[0]; // frank
-      console.log(JSON.stringify(temp));
-      let bokemon: Bokemon = new Bokemon(0, temp, 5);   // lvl ook random maken
-      console.log(bokemon.lvl);
-      this.bokemonService.createBokemon(bokemon).subscribe(br=>{
-        console.log(bokemon);
-        console.log(JSON.stringify(bokemon));
-        this.signupService.saveUser(new Player( 0, username, password, world, sprite, x, y, br)).
-        subscribe(player =>{
-            console.log(bokemon.lvl)
-            console.log("Signup complete");
-            this.router.navigate(['world-view']);
-          }
-        );
-      });
-
-
-    });
-
-
-
-
-
-
-    //
-    // this.signupService.saveUser(new Player( 0, username, password, world, sprite, x, y, wildBokemon)).
-    // subscribe(player =>{
-    //   console.log("Signup complete");
-    //   this.router.navigate(['world-view']);
-    //   }
-    //   );
-    
-    
+    this.playerService.findByUsername(username)
+      .subscribe(players => {
+        console.log(players);
+        if (players && players.length == 0) {
+          this.addNewPlayerAndLogin(username, password);
+        } else {
+          window.alert("This username is not available, please choose a different username");
+        }
+      })
   }
 
-  goToLogin() {
-    this.router.navigate(['login-page'])
+  private addNewPlayerAndLogin(username: string, password: string) {
+    this.templateService.findAll()
+      .subscribe(templates => {
+        this.bokemonService.createBokemon(new Bokemon(0, templates[0], 5))
+          .subscribe(bokemon => {
+            let player = new Player(
+              0,
+              username,
+              password,
+              8,
+              "https://i.imgur.com/iwnZWVy.png",
+              3,
+              3,
+              bokemon);
+
+            this.playerService.createPlayer(player)
+              .subscribe(() => {
+                console.log(player.username + " " + player.password);
+                  this.authenticationService.login(player.username, player.password)
+                    .subscribe(() => {
+                      this.router.navigate(['world-view']);
+                    })
+              })
+          })
+      })
   }
 }
