@@ -1,6 +1,6 @@
 <p>Hello new player, welcome to the world of Bokemon!</p>
 <p>Please enter a username and password to create an account</p>
-<form [formGroup]="signupPage" (ngSubmit)="checkUser($event)">
+<form [formGroup]="signupPage" (ngSubmit)="onSignup($event)">
   <input formControlName="username" type="text" placeholder="username">
   <input formControlName="password" type="password" placeholder="password">
   <button type="submit">Create new account</button>
