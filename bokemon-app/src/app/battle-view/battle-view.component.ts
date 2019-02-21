@@ -32,7 +32,6 @@ export class BattleViewComponent implements OnInit {
     this.getPlayer();
   }
 
-
   createWildBokemon(): void {
     this.templateService.findAll().subscribe(bokemonTemplates => {
       let temp = bokemonTemplates[(Math.floor(Math.random()*bokemonTemplates.length))]; // frank
@@ -43,21 +42,10 @@ export class BattleViewComponent implements OnInit {
   private getPlayer() {
     this.player = this.authenticationService.currentPlayer;
   }
-  // private getPlayerBokemon() {
-  //   this.templateService.findAll().subscribe(bokemonTemplates => {
-  //     let temp = bokemonTemplates[(Math.floor(Math.random()*bokemonTemplates.length))]; // frank
-  //     this.playerBokemon = new Bokemon(0, temp, (Math.floor(Math.random()*5)+1));   // lvl ook random maken
-  //   });
-  // }
 
   private getPlayerBokemon(){
     this.playerBokemon = this.authenticationService.currentPlayer.bokemon;
-    // this.playerBokemon = this.player.bokemon;
   }
-
-  // displayImage(): void{
-  //   randomImage = this.wildBokemon.template.sprite
-  // }
 
   attackBokemon() {
     if (this.playerBokemon.spd >= this.wildBokemon.spd) {
@@ -65,7 +53,10 @@ export class BattleViewComponent implements OnInit {
       this.wildBokemon.hp -= damageToWildBokemon;
       if (this.wildBokemon.hp <= 0){
         window.alert("YOU ARE VICTORIOUS!!!")
-        this.player.bokemon.lvl += 1;
+        this.levelUp();
+        // this.player.bokemon.lvl += 1;
+        this.player.bokemon.maxHp = this.player.bokemon.template.baseHp + this.player.bokemon.template.deltaHp*this.player.bokemon.lvl;
+        this.player.bokemon.setStatsByLevel();
         // this.authenticationService.currentPlayer.bokemon.lvl += 1;
         // this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("CHECK")})
         this.bokemonService.updateBokemon(this.player.bokemon).subscribe(()=>{console.log("BOKE")})
@@ -90,12 +81,16 @@ export class BattleViewComponent implements OnInit {
         if (this.wildBokemon.hp <= 0){
           window.alert("YOU ARE VICTORIOUS!!!")
           this.player.bokemon.lvl += 1;
+          this.player.bokemon.setStatsByLevel();
           // this.authenticationService.currentPlayer.bokemon.lvl += 1;
           // this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("CHECK")})
           this.bokemonService.updateBokemon(this.player.bokemon).subscribe(()=>{console.log("BOKE")})
         }
       }
     }
+  }
+  levelUp() {
+
   }
 
   useItem() {
