@@ -31,17 +31,7 @@ export class BokemonService {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  updateBokemon(bokemon: Bokemon): Observable<Bokemon> {
+    return this.http.patch<Bokemon>('http://localhost:8080/bokemon/', bokemon).pipe();
+  }
 }

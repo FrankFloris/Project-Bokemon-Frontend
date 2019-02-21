@@ -68,6 +68,7 @@ export class WorldViewComponent implements OnInit {
       this.player.x += dx;
       this.player.y += dy;
       this.spriteView = this.tileMap.getViewSprites(this.player.x, this.player.y, 6, 6, this.player.sprite);
+      this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("CHECK")})
       if (this.tileMap.hasBokemon(xPos, yPos)) {
         this.onEncounter();
       }
@@ -97,7 +98,7 @@ export class WorldViewComponent implements OnInit {
   }
 
   enterBattle() {
-    this.playerService.updatePlayer(this.player).subscribe(data=>{console.log("CHECK")})
+    // this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("CHECK")})
 
 
     this.router.navigate(['world-view/battle-view'])

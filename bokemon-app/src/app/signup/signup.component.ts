@@ -71,7 +71,7 @@ export class SignupComponent implements OnInit {
     this.templateService.findAll().subscribe(bokemonTemplates => {
       let temp = bokemonTemplates[0]; // frank
       console.log(JSON.stringify(temp));
-      let bokemon: Bokemon = new Bokemon(0, temp, 1);   // lvl ook random maken
+      let bokemon: Bokemon = new Bokemon(0, temp, 5);   // lvl ook random maken
       console.log(bokemon.lvl);
       this.bokemonService.createBokemon(bokemon).subscribe(br=>{
         console.log(bokemon);
