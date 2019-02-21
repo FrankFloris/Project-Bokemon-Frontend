@@ -54,7 +54,7 @@ export class SignupComponent implements OnInit {
   private addNewPlayerAndLogin(username: string, password: string) {
     this.templateService.findAll()
       .subscribe(templates => {
-        this.bokemonService.createBokemon(new Bokemon(0, templates[0], 1))
+        this.bokemonService.createBokemon(new Bokemon(0, templates[0], 5))
           .subscribe(bokemon => {
             let player = new Player(
               0,
