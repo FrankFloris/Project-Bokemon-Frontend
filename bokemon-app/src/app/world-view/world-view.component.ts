@@ -26,7 +26,7 @@ export class WorldViewComponent implements OnInit {
   tileMap: TileMap;
   //tileView: Tile[][];
   spriteView: string[][];
-  overlay: boolean = true;
+  overlay: boolean = false;
 
   testSting: string;
 
@@ -68,6 +68,7 @@ export class WorldViewComponent implements OnInit {
       this.player.x += dx;
       this.player.y += dy;
       this.spriteView = this.tileMap.getViewSprites(this.player.x, this.player.y, 6, 6, this.player.sprite);
+      this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("CHECK")})
       if (this.tileMap.hasBokemon(xPos, yPos)) {
         this.onEncounter();
       }
@@ -81,19 +82,14 @@ export class WorldViewComponent implements OnInit {
           .subscribe(tiles => {
             this.tileMap = new TileMap(tiles, worldMap);
             //this.tileView = this.tileMap.getView(this.player.x, this.player.y, 3, 3);
-            this.spriteView = this.tileMap.getViewSprites(this.player.x, this.player.y, 3, 3, this.player.sprite);
+            this.spriteView = this.tileMap.getViewSprites(this.player.x, this.player.y, 6, 6, this.player.sprite);
           });
       });
   }
 
   getPlayer(): void {
     this.player = this.authenticationService.currentPlayer;
-    // this.playerService.findByUsername(this.username)
-    //   .subscribe(players=> {
-    //     this.player = players[0];
-    //     this.getTileMap();
-    //     this.player.x = 2;
-    //   })
+
   }
 
   logOut(){
@@ -101,4 +97,10 @@ export class WorldViewComponent implements OnInit {
     this.router.navigate(['login-page'])
   }
 
+  enterBattle() {
+    // this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("CHECK")})
+
+
+    this.router.navigate(['world-view/battle-view'])
+  }
 }

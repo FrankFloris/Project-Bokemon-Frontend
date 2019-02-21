@@ -40,9 +40,6 @@ export class SignupComponent implements OnInit {
     const username = this.signupPage.controls['username'].value;
     const password = this.signupPage.controls['password'].value;
 
-
-
-
     this.playerService.findByUsername(username)
       .subscribe(players => {
         console.log(players);

@@ -9,6 +9,7 @@ export class Bokemon {
   lvl: number;
 
   name: string;
+  maxHp: number;
   hp: number;
   atk: number;
   def: number;
@@ -21,34 +22,18 @@ export class Bokemon {
     this.template = template;
     this.lvl = lvl;
 
-    this.name = template.name;
-    this.hp = template.baseHp + template.deltaHp*this.lvl;
-    this.atk = template.baseAtk + template.deltaAtk*this.lvl;
-    this.def = template.baseDef + template.deltaDef*this.lvl;
-    this.spd = template.baseSpd + template.deltaSpd*this.lvl;
+    this.name = this.template.name;
+
+    this.setStatsByLevel();
   }
 
+  public setStatsByLevel() : void {
 
-
-
-
-  // constructor(id: number, name: string, hp: number, atk: number, def: number, spd: number, lvl: number, exp: number, template: BokemonTemplate){
-  //   this.bp = template;
-  //   this.lvl = lvl;
-  //   this.id = id;
-  //   this.name = this.bp.name;
-  //   this.hp = this.bp.baseHp + this.bp.deltaHp*this.lvl;
-  //   this.atk = this.bp.baseAtk + this.bp.deltaAtk*this.lvl;
-  //   this.def = this.bp.baseDef + this.bp.deltaDef*this.lvl;
-  //   this.spd = this.bp.baseSpd + this.bp.deltaSpd*this.lvl;
-  //   this.exp = exp;
-  //
-  // }
-
-
-
-
-
-
+    this.maxHp = this.template.baseHp + this.template.deltaHp*this.lvl;
+    this.hp = this.template.baseHp + this.template.deltaHp*this.lvl;
+    this.atk = this.template.baseAtk + this.template.deltaAtk*this.lvl;
+    this.def = this.template.baseDef + this.template.deltaDef*this.lvl;
+    this.spd = this.template.baseSpd + this.template.deltaSpd*this.lvl;
+  }
 
 }
