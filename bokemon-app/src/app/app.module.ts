@@ -15,6 +15,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { LogoutComponent } from './logout/logout.component';
 import {WorldviewGuardService} from './worldview-guard.service';
 import { BattleViewComponent } from './battle-view/battle-view.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { BattleViewComponent } from './battle-view/battle-view.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [WorldviewGuardService],
   bootstrap: [AppComponent],
