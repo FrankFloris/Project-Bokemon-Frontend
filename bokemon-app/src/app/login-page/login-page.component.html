@@ -5,7 +5,15 @@
   </div>
 </div>
 
-<div style="max-width: 800px; margin: auto; ">
+<div *ngIf="player">
+  <app-player-info  [player]="player"></app-player-info>
+  <button (click)="onLogout()">log out</button>
+  <button (click)="onWorldView()">go to world view</button>
+</div >
+
+
+
+<div *ngIf="!player" style="max-width: 800px; margin: auto; ">
 <form [formGroup]="loginPage" (ngSubmit)="onLogin($event)">
   <div class="input-group mb-3">
     <div class="input-group-prepend">
