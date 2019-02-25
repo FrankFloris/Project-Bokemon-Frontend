@@ -54,6 +54,7 @@ export class SignupComponent implements OnInit {
   }
 
   private addNewPlayerAndLogin(username: string, password: string) {
+
     this.bokemonService.createBokemon(new Bokemon(0, this.selectedStarter, 5))
       .subscribe(bokemon => {
         let player = new Player(
@@ -62,8 +63,8 @@ export class SignupComponent implements OnInit {
           password,
           8,
           "https://i.imgur.com/TCT6xch.png",
-          3,
-          3,
+          8,
+          48,
           bokemon);
 
         this.playerService.createPlayer(player)
@@ -75,31 +76,6 @@ export class SignupComponent implements OnInit {
               })
           })
       })
-
-    // this.templateService.findAll()
-    //   .subscribe(templates => {
-    //     this.bokemonService.createBokemon(new Bokemon(0, templates[0], 5))
-    //       .subscribe(bokemon => {
-    //         let player = new Player(
-    //           0,
-    //           username,
-    //           password,
-    //           8,
-    //           "https://i.imgur.com/iwnZWVy.png",
-    //           3,
-    //           3,
-    //           bokemon);
-    //
-    //         this.playerService.createPlayer(player)
-    //           .subscribe(() => {
-    //             console.log(player.username + " " + player.password);
-    //               this.authenticationService.login(player.username, player.password)
-    //                 .subscribe(() => {
-    //                   this.router.navigate(['world-view']);
-    //                 })
-    //           })
-    //       })
-    //   })
   }
 
   private getBokemonTemplates() {
