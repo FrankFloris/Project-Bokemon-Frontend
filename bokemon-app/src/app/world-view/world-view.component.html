@@ -5,7 +5,7 @@
   <!--</tr>-->
 <!--</table>-->
 
-<div *ngIf ="spriteView">
+<div *ngIf ="spriteView && player">
   <table cellspacing="0" align="center">
     <tr *ngFor="let row of spriteView">
       <td *ngFor="let cell of row"><img src="{{cell}}" style="display: block;"></td>

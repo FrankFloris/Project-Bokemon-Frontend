@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Player} from "./Player";
 import {map} from "rxjs/operators";
 import {LoginForm} from "./LoginForm";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,18 @@ export class AuthenticationService {
     return this._currentPlayer;
   }
 
+  update(): Observable<Player> {
+    return this.http.get<any>('http://localhost:8080/player/' + this._currentPlayer.id)
+      .pipe(map(player => {
+        if (player) {
+          localStorage.setItem('currentPlayer', JSON.stringify(player));
+          this._currentPlayer = player;
+        }
+
+        return player;
+      }));
+  }
+
   login(username: string, password: string) {
     return this.http.post<any>('http://localhost:8080/login', new LoginForm(username, password))
       .pipe(map(player => {
@@ -29,13 +42,6 @@ export class AuthenticationService {
 
           return player;
       }));
-
-      // .subscribe(player => {
-      //   if (player) {
-      //     localStorage.setItem('currentPlayer', JSON.stringify(player));
-      //     this._currentPlayer = player;
-      //   }
-      // })
   }
 
   logout() {

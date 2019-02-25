@@ -45,9 +45,11 @@ export class WorldViewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getPlayer();
-    this.getTileMap();
+    this.getPlayerAndTileMap();
+    //this.getPlayer();
+    //this.getTileMap();
   }
+
 
   public closeOverlay(): void {
     this.overlay = false;
@@ -88,8 +90,22 @@ export class WorldViewComponent implements OnInit {
   }
 
   getPlayer(): void {
-    this.player = this.authenticationService.currentPlayer;
+    console.log("test");
 
+    this.authenticationService.update()
+      .subscribe(() => {
+        this.player = this.authenticationService.currentPlayer;
+      })
+  }
+
+  getPlayerAndTileMap(): void {
+    console.log("test");
+
+    this.authenticationService.update()
+      .subscribe(() => {
+        this.player = this.authenticationService.currentPlayer;
+        this.getTileMap();
+      })
   }
 
   logOut(){
