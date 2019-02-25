@@ -62,7 +62,7 @@ export class SignupComponent implements OnInit {
           username,
           password,
           8,
-          "https://i.imgur.com/iwnZWVy.png",
+          "https://i.imgur.com/TCT6xch.png",
           8,
           48,
           bokemon);
