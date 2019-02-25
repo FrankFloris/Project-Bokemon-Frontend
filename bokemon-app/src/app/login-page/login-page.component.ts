@@ -17,8 +17,7 @@ import {AuthenticationService} from "../authentication.service";
 })
 export class LoginPageComponent implements OnInit {
 
-  @Input()
-  loginpage: LoginPageComponent;
+  player: Player;
 
   public loginPage = this.fb.group({
     username: ['', Validators.required],
@@ -30,6 +29,7 @@ export class LoginPageComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    this.player = this.authenticationService.currentPlayer;
   }
 
   public onLogin(event) {
@@ -53,6 +53,15 @@ export class LoginPageComponent implements OnInit {
     // } else {
     //   window.alert('username and password not found');
     // }
+  }
+
+  public onLogout() {
+    this.authenticationService.logout();
+    this.player = null;
+  }
+
+  public onWorldView() {
+    this.router.navigate(['world-view'])
   }
 
   public goToSignup() {
