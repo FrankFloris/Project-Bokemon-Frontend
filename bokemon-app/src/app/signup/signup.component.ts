@@ -62,8 +62,8 @@ export class SignupComponent implements OnInit {
               password,
               8,
               "https://i.imgur.com/iwnZWVy.png",
-              3,
-              3,
+              8,
+              48,
               bokemon);
 
             this.playerService.createPlayer(player)
