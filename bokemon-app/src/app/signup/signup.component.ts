@@ -7,6 +7,7 @@ import {BokemonService} from '../bokemon.service';
 import {BokemonTemplateService} from '../bokemon-template.service';
 import {PlayerService} from "../player.service";
 import {AuthenticationService} from "../authentication.service";
+import {BokemonTemplate} from "../bokemonTemplate";
 
 @Component({
   selector: 'app-signup',
@@ -16,8 +17,8 @@ import {AuthenticationService} from "../authentication.service";
 })
 export class SignupComponent implements OnInit {
 
-  @Input()
-  players: Player[];
+  starterTemplates: BokemonTemplate[];
+  selectedStarter: BokemonTemplate;
 
   public signupPage = this.fb.group( {
     username:   ['', Validators.required],
@@ -34,6 +35,7 @@ export class SignupComponent implements OnInit {
   //, private router: Router    dit kan misschien in de constructor
 
   ngOnInit() {
+    this.getBokemonTemplates();
   }
 
   public onSignup(event) {
@@ -52,29 +54,60 @@ export class SignupComponent implements OnInit {
   }
 
   private addNewPlayerAndLogin(username: string, password: string) {
-    this.templateService.findAll()
-      .subscribe(templates => {
-        this.bokemonService.createBokemon(new Bokemon(0, templates[0], 5))
-          .subscribe(bokemon => {
-            let player = new Player(
-              0,
-              username,
-              password,
-              8,
-              "https://i.imgur.com/iwnZWVy.png",
-              3,
-              3,
-              bokemon);
+    this.bokemonService.createBokemon(new Bokemon(0, this.selectedStarter, 5))
+      .subscribe(bokemon => {
+        let player = new Player(
+          0,
+          username,
+          password,
+          8,
+          "https://i.imgur.com/iwnZWVy.png",
+          3,
+          3,
+          bokemon);
 
-            this.playerService.createPlayer(player)
+        this.playerService.createPlayer(player)
+          .subscribe(() => {
+            console.log(player.username + " " + player.password);
+            this.authenticationService.login(player.username, player.password)
               .subscribe(() => {
-                console.log(player.username + " " + player.password);
-                  this.authenticationService.login(player.username, player.password)
-                    .subscribe(() => {
-                      this.router.navigate(['world-view']);
-                    })
+                this.router.navigate(['world-view']);
               })
           })
       })
+
+    // this.templateService.findAll()
+    //   .subscribe(templates => {
+    //     this.bokemonService.createBokemon(new Bokemon(0, templates[0], 5))
+    //       .subscribe(bokemon => {
+    //         let player = new Player(
+    //           0,
+    //           username,
+    //           password,
+    //           8,
+    //           "https://i.imgur.com/iwnZWVy.png",
+    //           3,
+    //           3,
+    //           bokemon);
+    //
+    //         this.playerService.createPlayer(player)
+    //           .subscribe(() => {
+    //             console.log(player.username + " " + player.password);
+    //               this.authenticationService.login(player.username, player.password)
+    //                 .subscribe(() => {
+    //                   this.router.navigate(['world-view']);
+    //                 })
+    //           })
+    //       })
+    //   })
   }
+
+  private getBokemonTemplates() {
+    this.templateService.findAll()
+      .subscribe(templates => {
+        this.starterTemplates = templates.slice(0, 3);
+        this.selectedStarter = templates[0];
+      })
+  }
+
 }

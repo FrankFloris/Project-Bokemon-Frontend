@@ -1,13 +1,18 @@
-<p>Hello new player, welcome to the world of Bokemon!</p>
-<p>Please enter a username and password to create an account</p>
-<form [formGroup]="signupPage" (ngSubmit)="onSignup($event)">
-  <input formControlName="username" type="text" placeholder="username">
-  <input formControlName="password" type="password" placeholder="password">
-  <button type="submit">Create new account</button>
-</form>
-<form [formGroup]="signupPage" (ngSubmit)="goToLogin()">
-  <button type="submit">Login</button>
-</form>
+<div *ngIf="selectedStarter">
+  <p>Hello new player, welcome to the world of Bokemon!</p>
+  <p>Please enter a username and password to create an account</p>
+  <form [formGroup]="signupPage" (ngSubmit)="onSignup($event)">
+    <input formControlName="username" type="text" placeholder="username">
+    <input formControlName="password" type="password" placeholder="password">
+    <button type="submit">Create new account</button>
+  </form>
+  <form [formGroup]="signupPage" (ngSubmit)="goToLogin()">
+    <button type="submit">Login</button>
+  </form>
+
+  <img src="{{selectedStarter.sprite}}">
+  <select [(ngModel)]="selectedStarter"><option *ngFor="let template of starterTemplates" [ngValue]="template">{{template.name}}</option></select>
+</div>
 
 <!--<div [hidden]="isNewuser"></div>-->
 
