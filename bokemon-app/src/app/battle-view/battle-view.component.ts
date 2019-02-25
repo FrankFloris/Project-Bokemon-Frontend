@@ -7,6 +7,7 @@ import {AuthenticationService} from '../authentication.service';
 import {Player} from '../Player';
 import {PlayerService} from '../player.service';
 
+
 @Component({
   selector: 'app-battle-view',
   templateUrl: './battle-view.component.html',
@@ -26,6 +27,9 @@ export class BattleViewComponent implements OnInit {
   wildBokemon: Bokemon;
   playerBokemon: Bokemon;
   battleText: string;
+  private message: string;
+
+
 
   ngOnInit() {
     this.createWildBokemon();
@@ -36,7 +40,7 @@ export class BattleViewComponent implements OnInit {
   createWildBokemon(): void {
     this.templateService.findAll().subscribe(bokemonTemplates => {
       let temp = bokemonTemplates[(Math.floor(Math.random()*bokemonTemplates.length))]; // frank
-      this.wildBokemon = new Bokemon(0, temp, (Math.floor(Math.random()*(this.playerBokemon.lvl-2))+1));   // lvl ook random maken
+      this.wildBokemon = new Bokemon(0, temp, this.getRandomLevel(this.playerBokemon.lvl));
     });
   }
 
@@ -69,17 +73,17 @@ export class BattleViewComponent implements OnInit {
   }
 
   attackWildBokemon(){
-    let damageToWildBokemon = Math.round(this.playerBokemon.atk * (100 / (100 + this.wildBokemon.def)));
+    let damageToWildBokemon = Math.round(this.playerBokemon.atk * ((Math.floor(Math.random()*10)+95) / (100 + this.wildBokemon.def))* this.calculateCritModifier());
     this.wildBokemon.hp -= damageToWildBokemon;
-    this.battleText += ('<div>' + "Your " + this.playerBokemon.name + " dealt " +
+    this.battleText += ('<div>' + this.message + "Your " + this.playerBokemon.name + " dealt " +
       damageToWildBokemon + " damage to the wild " + this.wildBokemon.name +
       ". It has " + this.wildBokemon.hp + " hitpoints left" + '</div>');
   }
 
   attackPlayerBokemon(){
-    let damageToPlayerBokemon = Math.round(this.wildBokemon.atk * (100 / (100 + this.playerBokemon.def)));
+    let damageToPlayerBokemon = Math.round(this.wildBokemon.atk * ((Math.floor(Math.random()*10)+95) / (100 + this.playerBokemon.def)) * this.calculateCritModifier());
     this.playerBokemon.hp -= damageToPlayerBokemon;
-    this.battleText += ('<div>' + "Wild " + this.wildBokemon.name + " dealt " +
+    this.battleText += ('<div>' + this.message + "Wild " + this.wildBokemon.name + " dealt " +
       damageToPlayerBokemon + " damage to your " + this.playerBokemon.name +
       ". It has " + this.playerBokemon.hp + " hitpoints left" + '</div>');
   }
@@ -111,6 +115,14 @@ export class BattleViewComponent implements OnInit {
       this.player.bokemon.template.deltaSpd*this.player.bokemon.lvl;
   }
 
+  calculateCritModifier(): number {
+    if ((Math.floor(Math.random()*5)+1) == 1){
+      this.message = "Critical hit!!! "
+      return 1.5;
+    } else {
+      this.message= "";
+      return 1;}}
+
   useItem() {
     console.log("You cannot use items yet")
   }
@@ -123,4 +135,8 @@ export class BattleViewComponent implements OnInit {
     this.router.navigate(['world-view'])
   }
 
+  private getRandomLevel(level: number): number {
+    let rand = Math.round(Math.random()*(level - (level-5)) + (level-5));
+    return Math.max(1, rand);
+  }
 }
