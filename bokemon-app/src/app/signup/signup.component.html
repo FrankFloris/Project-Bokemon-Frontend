@@ -1,67 +1,40 @@
-<div *ngIf="selectedStarter">
-  <p>Hello new player, welcome to the world of Bokemon!</p>
-  <p>Please enter a username and password to create an account</p>
+<div *ngIf="selectedStarter" style="max-width: 800px; margin: auto;">
+  <!--<p>Hello new player, welcome to the world of Bokemon!</p>-->
+  <!--<p>Please enter a username and password to create an account</p>-->
+  <h3 style="text-align: center; padding: 4%;">Create new Account</h3>
   <form [formGroup]="signupPage" (ngSubmit)="onSignup($event)">
-    <input formControlName="username" type="text" placeholder="username">
-    <input formControlName="password" type="password" placeholder="password">
-    <button type="submit">Create new account</button>
-  </form>
-  <form [formGroup]="signupPage" (ngSubmit)="goToLogin()">
-    <button type="submit">Login</button>
-  </form>
 
-  <img src="{{selectedStarter.sprite}}">
-  <select [(ngModel)]="selectedStarter"><option *ngFor="let template of starterTemplates" [ngValue]="template">{{template.name}}</option></select>
+    <!-- Username input field-->
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Username</span>
+      </div>
+      <input class="form-control" formControlName="username" type="text" placeholder="username">
+    </div>
+
+    <!-- Password input field-->
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Password</span>
+      </div>
+     <input class="form-control" formControlName="password" type="password" placeholder="password">
+    </div>
+
+    <table align="center" style="width: 100%;">
+      <tr>
+
+        <td *ngFor="let b of starterTemplates">
+          <!--<img src="{{b.sprite}}">-->
+          <button class="btn btn-outline-primary" type="button" (click)="onStarterSelect(b)" style="padding: 8px;"><img src="{{b.sprite}}"></button>
+        </td>
+      </tr>
+    </table>
+
+    <table align="center" style="width: 100%;">
+      <tr>
+        <td style="width: 50%"><button type="submit" class="btn btn-primary btn-lg btn-block" style="margin: auto;">create account</button></td>
+        <td style="width: 50%"><button type="button" (click)="onGoToLogin()" class="btn btn-primary btn-lg btn-block" style="margin: auto;">return to login</button></td>
+      </tr>
+    </table>
+  </form>
 </div>
-
-<!--<div [hidden]="isNewuser"></div>-->
-
-
-<!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
-<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">-->
-  <!--Launch demo modal-->
-<!--</button>-->
-
- <!--&lt;!&ndash;Modal &ndash;&gt;-->
-<!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-  <!--<div class="modal-dialog" role="document">-->
-    <!--<div class="modal-content">-->
-      <!--<div class="modal-header">-->
-        <!--<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
-        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-          <!--<span aria-hidden="true">&times;</span>-->
-        <!--</button>-->
-      <!--</div>-->
-      <!--<div class="modal-body">-->
-        <!--...-->
-      <!--</div>-->
-      <!--<div class="modal-footer">-->
-        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-
-
-<!--&lt;!&ndash; Large modal &ndash;&gt;-->
-<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>-->
-
-<!--<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">-->
-  <!--<div class="modal-dialog modal-lg">-->
-    <!--<div class="modal-content">-->
-      <!--...-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; Small modal &ndash;&gt;-->
-<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Small modal</button>-->
-
-<!--<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">-->
-  <!--<div class="modal-dialog modal-sm">-->
-    <!--<div class="modal-content">-->
-      <!--...-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
