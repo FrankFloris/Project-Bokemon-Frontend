@@ -7,8 +7,14 @@
 
 <div *ngIf="player">
   <app-player-info  [player]="player"></app-player-info>
-  <button (click)="onLogout()">log out</button>
-  <button (click)="onWorldView()">go to world view</button>
+
+  <div style="width: 400px; margin: auto;" >
+    <button class="btn btn-primary btn-lg btn-block" (click)="onLogout()">log out</button>
+    <button class="btn btn-primary btn-lg btn-block" (click)="onWorldView()">go to world view</button>
+  </div>
+
+
+
 </div >
 
 
@@ -29,16 +35,20 @@
     <input formControlName="password" type="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
   </div>
 
-  <button type="submit" class="btn btn-primary btn-lg btn-block" style="max-width: 200px; margin: auto;">Login</button>
+  <table align="center" style="width: 100%;">
+    <tr>
+      <td style="width: 50%"><button type="submit" class="btn btn-primary btn-lg btn-block" style="margin: auto;">login</button></td>
+      <td style="width: 50%"><button type="button" (click)="goToSignup()" class="btn btn-primary btn-lg btn-block" style="margin: auto;">go to sign up</button></td>
+    </tr>
+  </table>
+
+
 </form>
 
 <p></p>
 
-  <div>Don't have an account yet?</div>
 <form [formGroup]="loginPage" (ngSubmit)="goToSignup()">
 
-
-  <button type="submit" class="btn btn-primary btn-lg btn-block" style="max-width: 200px; margin: auto;">Sign up instead</button>
 </form>
 </div>
 

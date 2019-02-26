@@ -78,6 +78,14 @@ export class SignupComponent implements OnInit {
       })
   }
 
+  onGoToLogin() {
+    this.router.navigate(['login-page']);
+  }
+
+  onStarterSelect(selected: BokemonTemplate) {
+    this.selectedStarter = selected;
+  }
+
   private getBokemonTemplates() {
     this.templateService.findAll()
       .subscribe(templates => {
