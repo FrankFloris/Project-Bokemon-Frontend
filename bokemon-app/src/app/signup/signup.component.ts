@@ -64,7 +64,7 @@ export class SignupComponent implements OnInit {
           8,
           "https://i.imgur.com/TCT6xch.png",
           8,
-          48,
+          73,
           bokemon);
 
         this.playerService.createPlayer(player)

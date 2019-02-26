@@ -92,17 +92,17 @@ export class BattleViewComponent implements OnInit {
     if (this.wildBokemon.hp <= 0){
       window.alert("YOU ARE VICTORIOUS!!! LEVEL UP!")
       this.levelChange(1);
-      this.bokemonService.updateBokemon(this.player.bokemon).subscribe(()=>{console.log("BOKE")})
+      this.bokemonService.updateBokemon(this.player.bokemon).subscribe(()=>{console.log("Updating bokemon level")})
       this.router.navigate(['world-view'])
     }
     else if (this.playerBokemon.hp <= 0){
       this.levelChange(-2)
       this.bokemonService.updateBokemon(this.player.bokemon).subscribe(()=>{console.log("level -2")})
       this.player.x = 8;
-      this.player.y = 48;
+      this.player.y = 73;
       this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("positie update")})
       window.alert("YOUR BOKEMON HAS DIED!!! Level -2 and back to start!")
-      this.router.navigate(['login-page'])
+      this.router.navigate(['world-view'])
     }
   }
 

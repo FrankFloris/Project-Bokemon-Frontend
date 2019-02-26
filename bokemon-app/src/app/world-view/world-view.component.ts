@@ -12,29 +12,20 @@ import {PlayerService} from "../player.service";
 import {Player} from "../Player";
 import {AuthenticationService} from "../authentication.service";
 
-
 @Component({
   selector: 'app-world-view',
   templateUrl: './world-view.component.html',
   styleUrls: ['./world-view.component.css']
 })
-export class WorldViewComponent implements OnInit {
+export class WorldViewComponent implements OnInit{
 
-  //username: string = localStorage.getItem("player");
   player: Player;
 
   tileMap: TileMap;
-  //tileView: Tile[][];
   spriteView: string[][];
   overlay: boolean = false;
 
   testSting: string;
-
-  // @Input()
-  // logOutPage: WorldViewComponent;
-  //
-  // public logOutPage = this.fb.group({
-  // });
 
   constructor(
     private worldMapService: WorldMapService,
@@ -98,9 +89,6 @@ export class WorldViewComponent implements OnInit {
   }
 
   enterBattle() {
-    // this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("CHECK")})
-
-
     this.router.navigate(['world-view/battle-view'])
   }
 }
