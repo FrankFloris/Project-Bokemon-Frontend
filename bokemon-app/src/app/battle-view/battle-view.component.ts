@@ -65,7 +65,7 @@ export class BattleViewComponent implements OnInit {
         window.alert("IMPOSSIBRU");
         break;
       case "3":
-        window.alert("NO!");
+        // this.catchBokemon();
         break;
       case "4":
         this.run();
@@ -158,6 +158,11 @@ export class BattleViewComponent implements OnInit {
 
   catchBokemon() {
     console.log("You cannot catch Bokemon yet")
+    this.bokemonService.createBokemon(new Bokemon(0, this.wildBokemon.template, this.wildBokemon.lvl))
+      .subscribe( bokemon => {
+        let player = this.player;
+        this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("meer bokemon?")})
+      })
   }
 
   run() {
