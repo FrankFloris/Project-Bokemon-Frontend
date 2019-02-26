@@ -3,6 +3,14 @@ src="http://66.90.93.122/ost/pokemon-yellow-blue-red-gb/xhblncow/30_Cycling.mp3"
 loop="true"
 autostart="true">
 
+<div *ngIf="encounter" class="overlay">
+  <div class="overlay-content">
+    <h2 class="alert alert-light">A wild 🅱️okemon wants to battle!</h2>
+    <button (click)="enterBattle()" class="btn btn-dark btn-lg btn-block">① Accept battle</button>
+    <button (click)="closeOverlay()" class="btn btn-dark btn-lg btn-block">② Decline battle </button>
+  </div>
+</div>
+
 
 <!--<table cellspacing="0">-->
   <!--<tr *ngFor="let row of view">-->
@@ -45,10 +53,4 @@ autostart="true">
 
 
 
-<div *ngIf="encounter" class="overlay">
-  <div class="overlay-content">
-    <h2 class="alert alert-light">A wild 🅱️okemon wants to battle!</h2>
-    <button (click)="enterBattle()" class="btn btn-dark btn-lg btn-block">① Accept battle</button>
-    <button (click)="closeOverlay()" class="btn btn-dark btn-lg btn-block">② Decline battle </button>
-  </div>
-</div>
+

@@ -1,3 +1,10 @@
+<div *ngIf="player && showPlayerInfoOverlay">
+  <div style="position: absolute; left: 0; width: 100%; height: 100%; background-color: white "></div>
+  <app-player-info-overlay [player]="player" (close)="onClosePlayerInfo()"></app-player-info-overlay>
+</div>
+
+
+
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4">🅱️okemon</h1>
@@ -5,12 +12,14 @@
   </div>
 </div>
 
-<div *ngIf="player">
-  <app-player-info  [player]="player"></app-player-info>
 
+<div *ngIf="player">
+  <!--<app-player-info  [player]="player"></app-player-info>-->
+  <h2 style="text-align: center">logged in as: {{player.username}}</h2>
   <div style="width: 400px; margin: auto;" >
-    <button class="btn btn-primary btn-lg btn-block" (click)="onLogout()">log out</button>
+    <button class="btn btn-primary btn-lg btn-block" (click)="onShowPlayerInfo()">show player info</button>
     <button class="btn btn-primary btn-lg btn-block" (click)="onWorldView()">go to world view</button>
+    <button class="btn btn-primary btn-lg btn-block" (click)="onLogout()">log out</button>
   </div>
 
 
