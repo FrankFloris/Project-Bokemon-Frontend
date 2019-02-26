@@ -10,6 +10,9 @@ autostart="true">
   <!--</tr>-->
 <!--</table>-->
 
+<app-player-info-overlay *ngIf="player && showPlayerInfo" [player]="player" (close)="onClosePlayerInfo()"></app-player-info-overlay>
+<!--<app-player-info class="player-info" *ngIf="player" [player]="player"></app-player-info>-->
+
 <div *ngIf ="spriteView && player">
   <table cellspacing="0" align="center">
     <tr *ngFor="let row of spriteView">
@@ -37,11 +40,10 @@ autostart="true">
   </table>
 </div>
 
+<button (click)="onShowPlayerInfo()" class="btn btn-primary btn-lg btn-block" style="max-width: 200px; margin: auto;">show player info</button>
+<button (click)="logOut()" class="btn btn-primary btn-lg btn-block" style="max-width: 200px; margin: auto;">Logout</button>
 
-<button (click)="logOut()" class="btn btn-primary btn-lg btn-block" style="max-width: 200px;
-   margin: auto;">Logout</button>
 
-<button (click)="onEncounter()">show overlay</button>
 
 <div *ngIf="encounter" class="overlay">
   <div class="overlay-content">
@@ -70,4 +72,3 @@ autostart="true">
   <!--<button (click)="movePlayerUpdate(0,-1)" class="btn btn-primary btn-lg btn-block" style="max-width: 200px;-->
    <!--margin: auto;">Move Up</button>-->
 
-<div *ngIf="player">Current player is {{player.world}}</div>

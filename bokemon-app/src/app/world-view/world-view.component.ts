@@ -29,6 +29,7 @@ export class WorldViewComponent implements OnInit{
   tileMap: TileMap;
   spriteView: string[][];
   encounter: boolean = false;
+  showPlayerInfo: boolean = false;
 
   testSting: string;
 
@@ -114,6 +115,14 @@ export class WorldViewComponent implements OnInit{
       .subscribe(() => {
         this.player = this.authenticationService.currentPlayer;
       })
+  }
+
+  onClosePlayerInfo() {
+    this.showPlayerInfo = false;
+  }
+
+  onShowPlayerInfo() {
+    this.showPlayerInfo = true;
   }
 
   getPlayerAndTileMap(): void {
