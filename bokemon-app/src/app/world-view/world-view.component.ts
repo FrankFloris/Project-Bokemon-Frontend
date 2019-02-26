@@ -105,6 +105,17 @@ export class WorldViewComponent implements OnInit{
       case "ArrowRight":
         this.movePlayer(1, 0);
         break;
+      case "1":
+        if (this.encounter == true){
+          this.enterBattle();
+        }
+        break;
+      case "2":
+        if (this.encounter == true) {
+          this.closeOverlay();
+        }
+        break;
+
     }
   }
 

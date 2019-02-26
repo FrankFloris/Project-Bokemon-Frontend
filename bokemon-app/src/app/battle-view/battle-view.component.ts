@@ -11,7 +11,11 @@ import {PlayerService} from '../player.service';
 @Component({
   selector: 'app-battle-view',
   templateUrl: './battle-view.component.html',
-  styleUrls: ['./battle-view.component.css']
+  styleUrls: ['./battle-view.component.css'],
+
+  host: {
+    '(document:keydown)': 'onKey($event)'
+  }
 })
 export class BattleViewComponent implements OnInit {
 
@@ -50,6 +54,23 @@ export class BattleViewComponent implements OnInit {
 
   private getPlayerBokemon(){
     this.playerBokemon = this.authenticationService.currentPlayer.bokemon;
+  }
+
+  onKey(event: KeyboardEvent){
+    switch (event.key){
+      case "1":
+        this.attackBokemon();
+        break;
+      case "2":
+        window.alert("IMPOSSIBRU");
+        break;
+      case "3":
+        window.alert("NO!");
+        break;
+      case "4":
+        this.run();
+        break;
+    }
   }
 
   attackBokemon() {
@@ -92,12 +113,12 @@ export class BattleViewComponent implements OnInit {
     if (this.wildBokemon.hp <= 0){
       window.alert("YOU ARE VICTORIOUS!!! LEVEL UP!")
       this.levelChange(1);
-      this.bokemonService.updateBokemon(this.player.bokemon).subscribe(()=>{console.log("Updating bokemon level")})
+      this.savingBokemon();
       this.router.navigate(['world-view'])
     }
     else if (this.playerBokemon.hp <= 0){
       this.levelChange(-2)
-      this.bokemonService.updateBokemon(this.player.bokemon).subscribe(()=>{console.log("level -2")})
+      this.savingBokemon();
       this.player.x = 8;
       this.player.y = 73;
       this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("positie update")})
@@ -140,11 +161,16 @@ export class BattleViewComponent implements OnInit {
   }
 
   run() {
+    this.savingBokemon();
     this.router.navigate(['world-view'])
   }
 
   private getRandomLevel(level: number): number {
     let rand = Math.round(Math.random()*(level - (level-5)) + (level-5));
     return Math.max(1, rand);
+  }
+
+  private savingBokemon() {
+    this.bokemonService.updateBokemon(this.player.bokemon).subscribe(()=>{console.log("saving...")})
   }
 }

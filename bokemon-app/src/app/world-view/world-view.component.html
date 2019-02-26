@@ -48,27 +48,7 @@ autostart="true">
 <div *ngIf="encounter" class="overlay">
   <div class="overlay-content">
     <h2 class="alert alert-light">A wild 🅱️okemon wants to battle!</h2>
-    <button (click)="enterBattle()" class="btn btn-dark btn-lg btn-block"> Accept battle</button>
-    <button (click)="closeOverlay()" class="btn btn-dark btn-lg btn-block"> Decline battle </button>
+    <button (click)="enterBattle()" class="btn btn-dark btn-lg btn-block">① Accept battle</button>
+    <button (click)="closeOverlay()" class="btn btn-dark btn-lg btn-block">② Decline battle </button>
   </div>
 </div>
-
-
-<!--<table cellspacing="0" align="center">-->
-  <!--<tr *ngFor="let row of viewTiles">-->
-    <!--<td *ngFor="let cell of row"><img src="{{cell.sprite}}" style="display: block;"></td>-->
-  <!--</tr>-->
-<!--</table>-->
-
-
-
-
-
-<!--<button (click)="logOut()" class="btn btn-primary btn-lg btn-block" style="max-width: 200px;-->
-   <!--margin: auto;">Logout</button>-->
-  <!--<button (click)="movePlayerUpdate(1,0)" class="btn btn-primary btn-lg btn-block" style="width: 64px; height:64px">↑</button>-->
-  <!--<button (click)="movePlayerUpdate(0,1)" class="btn btn-primary btn-lg btn-block" style="max-width: 200px;-->
-   <!--margin: auto;">Move Down</button>-->
-  <!--<button (click)="movePlayerUpdate(0,-1)" class="btn btn-primary btn-lg btn-block" style="max-width: 200px;-->
-   <!--margin: auto;">Move Up</button>-->
-
