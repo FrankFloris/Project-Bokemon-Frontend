@@ -14,8 +14,8 @@
     <!--<p class="lead">Welcome to the wonderous world of Bokemon.</p>-->
   </div>
 </div>
-<div align="center" *ngIf="wildBokemon">{{"A wild " + wildBokemon.template.name + " appeared!"}}</div>
-<div align="center" *ngIf="playerBokemon">{{"Fight it with your " + playerBokemon.template.name}}</div>
+<h2  align="center" *ngIf="wildBokemon"><b>{{"A wild " + wildBokemon.template.name + " appeared!"}}</b></h2>
+<h2  align="center" *ngIf="playerBokemon"><b>{{"Fight it with your " + playerBokemon.template.name}}</b></h2>
 <p></p>
 <table align="center">
   <tr>
@@ -44,17 +44,17 @@
 <p></p>
 <table align="center">
   <tr>
-    <td><button class="btn btn-primary btn-lg btn-block" (click)="attackBokemon()">Attack!</button></td>
-    <td><button class="btn btn-primary btn-lg btn-block" (click)="useItem()">Use item</button></td>
+    <td><button style="text-align: left" class="btn btn-primary btn-lg btn-block" (click)="attackBokemon()">① Attack!</button></td>
+    <td><button style="text-align: left" class="btn btn-primary btn-lg btn-block" (click)="useItem()">② Use item</button></td>
   </tr>
   <tr>
-    <td><button class="btn btn-primary btn-lg btn-block" (click)="catchBokemon()">Catch Bokemon</button></td>
-    <td><button class="btn btn-primary btn-lg btn-block" (click)="run()">Run from battle</button></td>
+    <td><button style="text-align: left" class="btn btn-primary btn-lg btn-block" (click)="catchBokemon()">③ Catch Bokemon</button></td>
+    <td><button style="text-align: left" class="btn btn-primary btn-lg btn-block" (click)="run()">④ Run from battle</button></td>
   </tr>
 <p></p>
 </table>
 
-<div style="background-color: chartreuse" align="center" [innerHTML]="battleText" *ngIf="wildBokemon && playerBokemon"></div>
+<div style="background-color: #dffcff; width: 40%; margin-left: auto; margin-right: auto" align="center" [innerHTML]="battleText" *ngIf="wildBokemon && playerBokemon"></div>
 
 
 

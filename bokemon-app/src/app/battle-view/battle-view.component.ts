@@ -11,7 +11,11 @@ import {PlayerService} from '../player.service';
 @Component({
   selector: 'app-battle-view',
   templateUrl: './battle-view.component.html',
-  styleUrls: ['./battle-view.component.css']
+  styleUrls: ['./battle-view.component.css'],
+
+  host: {
+    '(document:keydown)': 'onKey($event)'
+  }
 })
 export class BattleViewComponent implements OnInit {
 
@@ -50,6 +54,23 @@ export class BattleViewComponent implements OnInit {
 
   private getPlayerBokemon(){
     this.playerBokemon = this.authenticationService.currentPlayer.bokemon;
+  }
+
+  onKey(event: KeyboardEvent){
+    switch (event.key){
+      case "1":
+        this.attackBokemon();
+        break;
+      case "2":
+        window.alert("IMPOSSIBRU");
+        break;
+      case "3":
+        window.alert("NO!");
+        break;
+      case "4":
+        this.run();
+        break;
+    }
   }
 
   attackBokemon() {
