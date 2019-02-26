@@ -6,6 +6,7 @@ import {Tile} from '../Tile';
 
 import {Router} from '@angular/router';
 import {FormBuilder, Validators} from '@angular/forms';
+import {HostListener} from "@angular/core";
 
 import {TileMap} from "../TileMap";
 import {PlayerService} from "../player.service";
@@ -16,7 +17,11 @@ import {AuthenticationService} from "../authentication.service";
 @Component({
   selector: 'app-world-view',
   templateUrl: './world-view.component.html',
-  styleUrls: ['./world-view.component.css']
+  styleUrls: ['./world-view.component.css'],
+
+  host: {
+    '(document:keydown)': 'onKey($event)'
+  }
 })
 export class WorldViewComponent implements OnInit {
 
@@ -26,7 +31,7 @@ export class WorldViewComponent implements OnInit {
   tileMap: TileMap;
   //tileView: Tile[][];
   spriteView: string[][];
-  overlay: boolean = false;
+  encounter: boolean = false;
 
   testSting: string;
 
@@ -52,11 +57,11 @@ export class WorldViewComponent implements OnInit {
 
 
   public closeOverlay(): void {
-    this.overlay = false;
+    this.encounter = false;
   }
 
   public onEncounter(): void {
-    this.overlay = true;
+    this.encounter = true;
   }
 
   movePlayerUpdate(dx:number, dy: number): void {
@@ -64,6 +69,9 @@ export class WorldViewComponent implements OnInit {
   }
 
   movePlayer(dx: number, dy: number): void {
+    // Don't execute if the player has a battle request
+    if (this.encounter) { return; }
+
     let xPos = this.player.x + dx;
     let yPos = this.player.y + dy;
     if (this.tileMap.isMoveable(xPos, yPos)) {
@@ -87,6 +95,23 @@ export class WorldViewComponent implements OnInit {
             this.spriteView = this.tileMap.getViewSprites(this.player.x, this.player.y, 6, 6, this.player.sprite);
           });
       });
+  }
+
+  onKey(event: KeyboardEvent) {
+    switch (event.key) {
+      case "ArrowUp":
+        this.movePlayer(0,-1);
+        break;
+      case "ArrowDown":
+        this.movePlayer(0, 1);
+        break;
+      case "ArrowLeft":
+        this.movePlayer(-1, 0);
+        break;
+      case "ArrowRight":
+        this.movePlayer(1, 0);
+        break;
+    }
   }
 
   getPlayer(): void {
@@ -114,9 +139,7 @@ export class WorldViewComponent implements OnInit {
   }
 
   enterBattle() {
-    // this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("CHECK")})
-
-
+    this.encounter = false;
     this.router.navigate(['world-view/battle-view'])
   }
 }
