@@ -7,8 +7,14 @@
 
 <div *ngIf="player">
   <app-player-info  [player]="player"></app-player-info>
-  <button (click)="onLogout()">log out</button>
-  <button (click)="onWorldView()">go to world view</button>
+
+  <div style="width: 400px; margin: auto;" >
+    <button class="btn btn-primary btn-lg btn-block" (click)="onLogout()">log out</button>
+    <button class="btn btn-primary btn-lg btn-block" (click)="onWorldView()">go to world view</button>
+  </div>
+
+
+
 </div >
 
 
