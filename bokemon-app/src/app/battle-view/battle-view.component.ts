@@ -91,18 +91,26 @@ export class BattleViewComponent implements OnInit {
   checkRemainingHitpoints(){
     if (this.wildBokemon.hp <= 0){
       window.alert("YOU ARE VICTORIOUS!!! LEVEL UP!")
-      this.levelUp();
-      this.bokemonService.updateBokemon(this.player.bokemon).subscribe(()=>{console.log("BOKE")})
+      this.levelChange(1);
+      this.bokemonService.updateBokemon(this.player.bokemon).subscribe(()=>{console.log("Updating bokemon level")})
       this.router.navigate(['world-view'])
     }
     else if (this.playerBokemon.hp <= 0){
-      window.alert("YOUR BOKEMON HAS DIED!!!")
-      this.router.navigate(['login-page'])
+      this.levelChange(-2)
+      this.bokemonService.updateBokemon(this.player.bokemon).subscribe(()=>{console.log("level -2")})
+      this.player.x = 8;
+      this.player.y = 73;
+      this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("positie update")})
+      window.alert("YOUR BOKEMON HAS DIED!!! Level -2 and back to start!")
+      this.router.navigate(['world-view'])
     }
   }
 
-  levelUp() {
-    this.player.bokemon.lvl += 1;
+  levelChange(modifier: number) {
+    this.player.bokemon.lvl += modifier;
+    if (this.player.bokemon.lvl < 5){
+      this.player.bokemon.lvl = 5;
+    }
     this.player.bokemon.maxHp = this.player.bokemon.template.baseHp +
       this.player.bokemon.template.deltaHp*this.player.bokemon.lvl;
     this.player.bokemon.hp = this.player.bokemon.template.baseHp +

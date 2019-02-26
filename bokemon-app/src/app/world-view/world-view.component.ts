@@ -13,7 +13,6 @@ import {PlayerService} from "../player.service";
 import {Player} from "../Player";
 import {AuthenticationService} from "../authentication.service";
 
-
 @Component({
   selector: 'app-world-view',
   templateUrl: './world-view.component.html',
@@ -23,23 +22,15 @@ import {AuthenticationService} from "../authentication.service";
     '(document:keydown)': 'onKey($event)'
   }
 })
-export class WorldViewComponent implements OnInit {
+export class WorldViewComponent implements OnInit{
 
-  //username: string = localStorage.getItem("player");
   player: Player;
 
   tileMap: TileMap;
-  //tileView: Tile[][];
   spriteView: string[][];
   encounter: boolean = false;
 
   testSting: string;
-
-  // @Input()
-  // logOutPage: WorldViewComponent;
-  //
-  // public logOutPage = this.fb.group({
-  // });
 
   constructor(
     private worldMapService: WorldMapService,
@@ -80,7 +71,9 @@ export class WorldViewComponent implements OnInit {
       this.spriteView = this.tileMap.getViewSprites(this.player.x, this.player.y, 6, 6, this.player.sprite);
       this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("CHECK")})
       if (this.tileMap.hasBokemon(xPos, yPos)) {
-        this.onEncounter();
+        if ((Math.floor(Math.random()*10)+1) == 1) {
+          this.onEncounter();
+        }
       }
     }
   }
