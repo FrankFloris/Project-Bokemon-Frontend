@@ -71,7 +71,9 @@ export class WorldViewComponent implements OnInit{
       this.spriteView = this.tileMap.getViewSprites(this.player.x, this.player.y, 6, 6, this.player.sprite);
       this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("CHECK")})
       if (this.tileMap.hasBokemon(xPos, yPos)) {
-        this.onEncounter();
+        if ((Math.floor(Math.random()*10)+1) == 1) {
+          this.onEncounter();
+        }
       }
     }
   }
