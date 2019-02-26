@@ -17,6 +17,7 @@ import {WorldviewGuardService} from './worldview-guard.service';
 import { BattleViewComponent } from './battle-view/battle-view.component';
 import { FormsModule } from '@angular/forms';
 import { PlayerInfoComponent } from './player-info/player-info.component';
+import { PlayerInfoOverlayComponent } from './player-info-overlay/player-info-overlay.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { PlayerInfoComponent } from './player-info/player-info.component';
     LogoutComponent,
     BattleViewComponent,
     PlayerInfoComponent,
+    PlayerInfoOverlayComponent,
 
   ],
   imports: [
