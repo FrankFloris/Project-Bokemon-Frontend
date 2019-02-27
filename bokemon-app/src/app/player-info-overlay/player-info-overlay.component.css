@@ -1,0 +1,44 @@
+.overlay {
+  position: fixed;
+  width: 600px;
+  height: 100%;
+  left: 50%;
+  margin-left: -300px;
+  background-color: rgb(240, 240, 240);
+}
+
+.overlay-content {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.overlay-content-player {
+  margin-top: 3%;
+}
+
+.overlay-content-bokemon {
+  margin-top: 3%;
+}
+
+.title {
+  text-align: center;
+}
+
+.player-sprite {
+  display: block;
+  margin: auto;
+  width: 128px;
+  height: 128px;
+  image-rendering: pixelated
+}
+
+.bokemon-sprite {
+  display: block;
+  margin: auto;
+}
+
+.close-button {
+  top: 3%;
+}
+
+

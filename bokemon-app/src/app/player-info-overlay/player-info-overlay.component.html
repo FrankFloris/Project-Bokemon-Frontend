@@ -1,0 +1,22 @@
+<div class="overlay">
+  <div class="overlay-content">
+    <div class="overlay-content-player">
+      <h2 class="title">player: {{player.username}}</h2>
+      <img class="player-sprite" src="{{player.sprite}}">
+    </div>
+
+    <div class="overlay-content-bokemon">
+      <h2 class="title">bokemon: {{player.bokemon.name}}</h2>
+      <img class="bokemon-sprite" src="{{player.bokemon.template.sprite}}">
+      <ul class="list-group list-group-flush" style="text-align: center">
+        <li class="list-group-item">level: {{player.bokemon.lvl}}</li>
+        <li class="list-group-item">max hp: {{player.bokemon.maxHp}}</li>
+        <li class="list-group-item">attack: {{player.bokemon.atk}}</li>
+        <li class="list-group-item">defence: {{player.bokemon.def}}</li>
+        <li class="list-group-item">speed: {{player.bokemon.spd}}</li>
+      </ul>
+    </div>
+
+    <button (click)="onClose()" class="btn btn-primary btn-lg btn-block" style="margin-top: 3%;">close</button>
+  </div>
+</div>

@@ -18,6 +18,7 @@ import {AuthenticationService} from "../authentication.service";
 export class LoginPageComponent implements OnInit {
 
   player: Player;
+  showPlayerInfoOverlay: boolean = false;
 
   public loginPage = this.fb.group({
     username: ['', Validators.required],
@@ -58,6 +59,14 @@ export class LoginPageComponent implements OnInit {
   public onLogout() {
     this.authenticationService.logout();
     this.player = null;
+  }
+
+  public onShowPlayerInfo() {
+    this.showPlayerInfoOverlay = true;
+  }
+
+  public onClosePlayerInfo() {
+    this.showPlayerInfoOverlay = false;
   }
 
   public onWorldView() {
