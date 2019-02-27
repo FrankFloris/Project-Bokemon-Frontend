@@ -62,7 +62,7 @@ export class WorldViewComponent implements OnInit{
 
   movePlayer(dx: number, dy: number): void {
     // Don't execute if the player has a battle request
-    if (this.encounter) { return; }
+    if (this.encounter||this.showPlayerInfo) { return; }
 
     let xPos = this.player.x + dx;
     let yPos = this.player.y + dy;

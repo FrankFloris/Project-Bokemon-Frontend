@@ -114,7 +114,7 @@ export class BattleViewComponent implements OnInit {
       window.alert("YOU ARE VICTORIOUS!!! LEVEL UP!");
       this.levelChange(1);
       this.savingBokemon();
-      this.goBackToWorld();
+      // this.goBackToWorld();
     }
     else if (this.playerBokemon.hp <= 0){
       this.levelChange(-2);
@@ -157,26 +157,28 @@ export class BattleViewComponent implements OnInit {
   }
 
   tryCatchBokemon(){
-    if (this.wildBokemon.maxHp/this.wildBokemon.hp > 6.66 ){
+    if (this.wildBokemon.hp/this.wildBokemon.maxHp < 0.15 ){
       this.catchBokemon();
-      this.goBackToWorld();
+      // this.goBackToWorld();
     }
-    else if (this.wildBokemon.maxHp/this.wildBokemon.hp > 2 ){
+    else if (this.wildBokemon.hp/this.wildBokemon.maxHp < 0.5 ){
       if ((Math.floor(Math.random()*3)+1) == 1){
         this.catchBokemon();
-        this.goBackToWorld();
+        // this.goBackToWorld();
       }
       else {
         console.log("Zet een message in de message")
+        // wild bokemon moet aanvallen
       }
     }
     else {
       if ((Math.floor(Math.random()*10)+1) == 1){
         this.catchBokemon();
-        this.goBackToWorld();
+        // this.goBackToWorld();
       }
       else {
         console.log("HIER moet ook nog een message komen")
+        // wild bokemon moet aanvallen
       }
     }
   }
@@ -189,7 +191,9 @@ export class BattleViewComponent implements OnInit {
         console.log(this.player.bokemons);
         this.player.bokemons.push(bokemon);
         console.log(this.player.bokemons);
-        this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("meer bokemon?")})
+        this.playerService.updatePlayer(this.player).subscribe(()=>{
+          this.savingBokemon();
+          console.log("meer bokemon?")})
       })
   }
 
@@ -208,6 +212,8 @@ export class BattleViewComponent implements OnInit {
   }
 
   private savingBokemon() {
-    this.bokemonService.updateBokemon(this.player.bokemons[0]).subscribe(()=>{console.log("saving...")})
+    this.bokemonService.updateBokemon(this.player.bokemons[0]).subscribe(()=>{
+      console.log("saving...")})
+      this.goBackToWorld();
   }
 }
