@@ -53,7 +53,7 @@ export class BattleViewComponent implements OnInit {
   }
 
   private getPlayerBokemon(){
-    this.playerBokemon = this.authenticationService.currentPlayer.bokemon;
+    this.playerBokemon = this.authenticationService.currentPlayer.bokemons[0];
   }
 
   onKey(event: KeyboardEvent){
@@ -62,10 +62,10 @@ export class BattleViewComponent implements OnInit {
         this.attackBokemon();
         break;
       case "2":
-        window.alert("IMPOSSIBRU");
+        window.alert("Items have not been implemented yet");
         break;
       case "3":
-        // this.catchBokemon();
+        this.tryCatchBokemon();
         break;
       case "4":
         this.run();
@@ -111,42 +111,42 @@ export class BattleViewComponent implements OnInit {
 
   checkRemainingHitpoints(){
     if (this.wildBokemon.hp <= 0){
-      window.alert("YOU ARE VICTORIOUS!!! LEVEL UP!")
+      window.alert("YOU ARE VICTORIOUS!!! LEVEL UP!");
       this.levelChange(1);
       this.savingBokemon();
-      this.router.navigate(['world-view'])
+      this.goBackToWorld();
     }
     else if (this.playerBokemon.hp <= 0){
-      this.levelChange(-2)
+      this.levelChange(-2);
       this.savingBokemon();
       this.player.x = 8;
       this.player.y = 73;
-      this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("positie update")})
-      window.alert("YOUR BOKEMON HAS DIED!!! Level -2 and back to start!")
-      this.router.navigate(['world-view'])
+      this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("positie update")});
+      window.alert("YOUR BOKEMON HAS DIED!!! Level -2 and back to start!");
+      this.goBackToWorld();
     }
   }
 
   levelChange(modifier: number) {
-    this.player.bokemon.lvl += modifier;
-    if (this.player.bokemon.lvl < 5){
-      this.player.bokemon.lvl = 5;
+    this.player.bokemons[0].lvl += modifier;
+    if (this.player.bokemons[0].lvl < 5){
+      this.player.bokemons[0].lvl = 5;
     }
-    this.player.bokemon.maxHp = this.player.bokemon.template.baseHp +
-      this.player.bokemon.template.deltaHp*this.player.bokemon.lvl;
-    this.player.bokemon.hp = this.player.bokemon.template.baseHp +
-      this.player.bokemon.template.deltaHp*this.player.bokemon.lvl;
-    this.player.bokemon.atk = this.player.bokemon.template.baseAtk +
-      this.player.bokemon.template.deltaAtk*this.player.bokemon.lvl;
-    this.player.bokemon.def = this.player.bokemon.template.baseDef +
-      this.player.bokemon.template.deltaDef*this.player.bokemon.lvl;
-    this.player.bokemon.spd = this.player.bokemon.template.baseSpd +
-      this.player.bokemon.template.deltaSpd*this.player.bokemon.lvl;
+    this.player.bokemons[0].maxHp = this.player.bokemons[0].template.baseHp +
+      this.player.bokemons[0].template.deltaHp*this.player.bokemons[0].lvl;
+    this.player.bokemons[0].hp = this.player.bokemons[0].template.baseHp +
+      this.player.bokemons[0].template.deltaHp*this.player.bokemons[0].lvl;
+    this.player.bokemons[0].atk = this.player.bokemons[0].template.baseAtk +
+      this.player.bokemons[0].template.deltaAtk*this.player.bokemons[0].lvl;
+    this.player.bokemons[0].def = this.player.bokemons[0].template.baseDef +
+      this.player.bokemons[0].template.deltaDef*this.player.bokemons[0].lvl;
+    this.player.bokemons[0].spd = this.player.bokemons[0].template.baseSpd +
+      this.player.bokemons[0].template.deltaSpd*this.player.bokemons[0].lvl;
   }
 
   calculateCritModifier(): number {
     if ((Math.floor(Math.random()*5)+1) == 1){
-      this.message = "Critical hit!!! "
+      this.message = "Critical hit!!! ";
       return 1.5;
     } else {
       this.message= "";
@@ -156,18 +156,46 @@ export class BattleViewComponent implements OnInit {
     console.log("You cannot use items yet")
   }
 
+  tryCatchBokemon(){
+    if (this.wildBokemon.maxHp/this.wildBokemon.hp > 6.66 ){
+      this.catchBokemon();
+      this.goBackToWorld();
+    }
+    else if (this.wildBokemon.maxHp/this.wildBokemon.hp > 2 ){
+      if ((Math.floor(Math.random()*3)+1) == 1){
+        this.catchBokemon();
+        this.goBackToWorld();
+      }
+      else {
+        console.log("Zet een message in de message")
+      }
+    }
+    else {
+      if ((Math.floor(Math.random()*10)+1) == 1){
+        this.catchBokemon();
+        this.goBackToWorld();
+      }
+      else {
+        console.log("HIER moet ook nog een message komen")
+      }
+    }
+  }
+
   catchBokemon() {
-    console.log("You cannot catch Bokemon yet")
+    console.log("You cannot catch Bokemon yet");
     this.bokemonService.createBokemon(new Bokemon(0, this.wildBokemon.template, this.wildBokemon.lvl))
       .subscribe( bokemon => {
-        let player = this.player;
+        // let player = this.player;
+        console.log(this.player.bokemons);
+        this.player.bokemons.push(bokemon);
+        console.log(this.player.bokemons);
         this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("meer bokemon?")})
       })
   }
 
   run() {
     this.savingBokemon();
-    this.router.navigate(['world-view'])
+    this.goBackToWorld();
   }
 
   private getRandomLevel(level: number): number {
@@ -175,7 +203,11 @@ export class BattleViewComponent implements OnInit {
     return Math.max(1, rand);
   }
 
+  private goBackToWorld(){
+    this.router.navigate(['world-view'])
+  }
+
   private savingBokemon() {
-    this.bokemonService.updateBokemon(this.player.bokemon).subscribe(()=>{console.log("saving...")})
+    this.bokemonService.updateBokemon(this.player.bokemons[0]).subscribe(()=>{console.log("saving...")})
   }
 }

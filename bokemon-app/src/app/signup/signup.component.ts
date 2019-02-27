@@ -65,8 +65,8 @@ export class SignupComponent implements OnInit {
           "https://i.imgur.com/TCT6xch.png",
           8,
           73,
-          bokemon);
-
+          [bokemon]);
+        console.log(JSON.stringify(player));
         this.playerService.createPlayer(player)
           .subscribe(() => {
             console.log(player.username + " " + player.password);
