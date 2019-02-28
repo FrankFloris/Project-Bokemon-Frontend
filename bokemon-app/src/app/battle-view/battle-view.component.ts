@@ -62,7 +62,7 @@ export class BattleViewComponent implements OnInit {
         this.attackBokemon();
         break;
       case "2":
-        window.alert("Items have not been implemented yet");
+        this.useItem();
         break;
       case "3":
         this.tryCatchBokemon();
@@ -77,18 +77,14 @@ export class BattleViewComponent implements OnInit {
     this.battleText = "";
     if (this.playerBokemon.spd >= this.wildBokemon.spd) {
       this.attackWildBokemon();
-      this.checkRemainingHitpoints();
       if (this.wildBokemon.hp > 0) {
         this.attackPlayerBokemon();
-        this.checkRemainingHitpoints();
       }
     }
     else {
       this.attackPlayerBokemon();
-      this.checkRemainingHitpoints();
       if (this.playerBokemon.hp > 0) {
         this.attackWildBokemon();
-        this.checkRemainingHitpoints();
       }
     }
   }
@@ -99,6 +95,7 @@ export class BattleViewComponent implements OnInit {
     this.battleText += ('<div>' + this.message + "Your " + this.playerBokemon.name + " dealt " +
       damageToWildBokemon + " damage to the wild " + this.wildBokemon.name +
       ". It has " + this.wildBokemon.hp + " hitpoints left" + '</div>');
+    this.checkRemainingHitpoints();
   }
 
   attackPlayerBokemon(){
@@ -107,6 +104,7 @@ export class BattleViewComponent implements OnInit {
     this.battleText += ('<div>' + this.message + "Wild " + this.wildBokemon.name + " dealt " +
       damageToPlayerBokemon + " damage to your " + this.playerBokemon.name +
       ". It has " + this.playerBokemon.hp + " hitpoints left" + '</div>');
+    this.checkRemainingHitpoints();
   }
 
   checkRemainingHitpoints(){
@@ -114,7 +112,6 @@ export class BattleViewComponent implements OnInit {
       window.alert("YOU ARE VICTORIOUS!!! LEVEL UP!");
       this.levelChange(1);
       this.savingBokemon();
-      // this.goBackToWorld();
     }
     else if (this.playerBokemon.hp <= 0){
       this.levelChange(-2);
@@ -153,38 +150,37 @@ export class BattleViewComponent implements OnInit {
       return 1;}}
 
   useItem() {
-    console.log("You cannot use items yet")
+    this.battleText = "";
+    this.battleText = "You don't have any items!";
   }
 
   tryCatchBokemon(){
-    if (this.wildBokemon.hp/this.wildBokemon.maxHp < 0.15 ){
+    this.battleText = "";
+    if (this.wildBokemon.hp/this.wildBokemon.maxHp < 0.3 ){
       this.catchBokemon();
-      // this.goBackToWorld();
     }
-    else if (this.wildBokemon.hp/this.wildBokemon.maxHp < 0.5 ){
-      if ((Math.floor(Math.random()*3)+1) == 1){
+    else if (this.wildBokemon.hp/this.wildBokemon.maxHp < 0.6 ){
+      if ((Math.floor(Math.random()*2)+1) == 1){
         this.catchBokemon();
-        // this.goBackToWorld();
       }
       else {
-        console.log("Zet een message in de message")
-        // wild bokemon moet aanvallen
+        this.battleText += "Almost got it, but now the wild 🅱okemon is angry!";
+        this.attackPlayerBokemon();
       }
     }
     else {
-      if ((Math.floor(Math.random()*10)+1) == 1){
+      if ((Math.floor(Math.random()*7)+1) == 1){
         this.catchBokemon();
-        // this.goBackToWorld();
       }
       else {
-        console.log("HIER moet ook nog een message komen")
-        // wild bokemon moet aanvallen
+        this.battleText += "The wild 🅱okemon is still too healty, and now it's angry!";
+        this.attackPlayerBokemon();
       }
     }
   }
 
   catchBokemon() {
-    console.log("You cannot catch Bokemon yet");
+    window.alert("Congratulations! You have caught the wild " + this.wildBokemon.name + "!");
     this.bokemonService.createBokemon(new Bokemon(0, this.wildBokemon.template, this.wildBokemon.lvl))
       .subscribe( bokemon => {
         // let player = this.player;
