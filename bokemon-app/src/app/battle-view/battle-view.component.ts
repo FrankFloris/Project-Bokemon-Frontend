@@ -77,14 +77,20 @@ export class BattleViewComponent implements OnInit {
     this.battleText = "";
     if (this.playerBokemon.spd >= this.wildBokemon.spd) {
       this.attackWildBokemon();
+      this.checkRemainingHitpointsWild();
       if (this.wildBokemon.hp > 0) {
         this.attackPlayerBokemon();
+        this.checkRemainingHitpointsPlayer();
       }
     }
     else {
       this.attackPlayerBokemon();
       if (this.playerBokemon.hp > 0) {
         this.attackWildBokemon();
+        this.checkRemainingHitpointsWild();
+      }
+      else {
+        this.checkRemainingHitpointsPlayer();
       }
     }
   }
@@ -95,7 +101,6 @@ export class BattleViewComponent implements OnInit {
     this.battleText += ('<div>' + this.message + "Your " + this.playerBokemon.name + " dealt " +
       damageToWildBokemon + " damage to the wild " + this.wildBokemon.name +
       ". It has " + this.wildBokemon.hp + " hitpoints left" + '</div>');
-    this.checkRemainingHitpoints();
   }
 
   attackPlayerBokemon(){
@@ -104,22 +109,24 @@ export class BattleViewComponent implements OnInit {
     this.battleText += ('<div>' + this.message + "Wild " + this.wildBokemon.name + " dealt " +
       damageToPlayerBokemon + " damage to your " + this.playerBokemon.name +
       ". It has " + this.playerBokemon.hp + " hitpoints left" + '</div>');
-    this.checkRemainingHitpoints();
+    // this.checkRemainingHitpointsPlayer();
   }
 
-  checkRemainingHitpoints(){
-    if (this.wildBokemon.hp <= 0){
+  checkRemainingHitpointsWild() {
+    if (this.wildBokemon.hp <= 0) {
       window.alert("YOU ARE VICTORIOUS!!! LEVEL UP!");
       this.levelChange(1);
       this.savingBokemon();
     }
-    else if (this.playerBokemon.hp <= 0){
+  }
+  checkRemainingHitpointsPlayer(){
+    if (this.playerBokemon.hp <= 0){
       this.levelChange(-2);
       this.savingBokemon();
       this.player.x = 8;
       this.player.y = 73;
       this.playerService.updatePlayer(this.player).subscribe(()=>{console.log("positie update")});
-      window.alert("YOUR BOKEMON HAS DIED!!! Level -2 and back to start!");
+      window.alert("Your Bokemon has been knocked out! Level -2 and back to start!");
       this.goBackToWorld();
     }
   }
@@ -164,8 +171,9 @@ export class BattleViewComponent implements OnInit {
         this.catchBokemon();
       }
       else {
-        this.battleText += "Almost got it, but now the wild 🅱okemon is angry!";
+        this.battleText += "Almost got it, but now the wild " + this.wildBokemon.name + " is angry!";
         this.attackPlayerBokemon();
+        this.checkRemainingHitpointsPlayer();
       }
     }
     else {
@@ -173,8 +181,9 @@ export class BattleViewComponent implements OnInit {
         this.catchBokemon();
       }
       else {
-        this.battleText += "The wild 🅱okemon is still too healty, and now it's angry!";
+        this.battleText += "The wild " + this.wildBokemon.name + " is still too healty, and now it's angry!";
         this.attackPlayerBokemon();
+        this.checkRemainingHitpointsPlayer();
       }
     }
   }
